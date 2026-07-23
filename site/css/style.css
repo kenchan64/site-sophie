@@ -1529,3 +1529,64 @@ ul.pagination li a:hover { background-color: #f3f6ee; }
 #site-map ul.site-map-menu li { padding: 8px 0; border-bottom: 1px solid #e4e8e0; }
 #site-map ul.site-map-menu li:last-child { border-bottom: none; }
 #site-map ul.site-map-menu a { font-weight: 600; color: #2b443e; }
+
+/* --------------------------------------------------------------------------
+   21. Pages « secteur » (référencement local) : grille à 3 colonnes,
+       formulaire encadré, listes d'activités et de proximité
+   -------------------------------------------------------------------------- */
+#soref-activite-secteur,
+#soref-secteur-activites { text-align: left; }
+#soref-activite-secteur .row,
+#soref-secteur-activites .row { display: flex; flex-wrap: wrap; margin: 0 -15px; }
+#soref-activite-secteur [class*="col-"],
+#soref-secteur-activites [class*="col-"] { padding: 0 15px; width: 100%; }
+@media (min-width: 768px) {
+  #soref-activite-secteur .col-sm-6,
+  #soref-secteur-activites .col-sm-6 { width: 50%; }
+  #soref-secteur-activites .col-sm-4,
+  #soref-secteur-activites li.col-sm-4 { width: 33.3333%; }
+  #soref-secteur-activites .col-sm-8 { width: 66.6667%; }
+  #soref-secteur-activites .col-sm-offset-2 { margin-left: 16.6667%; }
+}
+@media (min-width: 992px) {
+  #soref-activite-secteur .col-lg-4,
+  #soref-secteur-activites .col-lg-4 { width: 33.3333%; }
+  #soref-activite-secteur .col-lg-12,
+  #soref-secteur-activites .col-lg-12 { width: 100%; }
+  #soref-secteur-activites .col-lg-offset-0 { margin-left: 0; }
+}
+
+/* Alignements hérités du thème d'origine */
+.text-left { text-align: left; }
+
+/* Formulaire de contact des pages secteur : panneau vert compact */
+.soref-form .contact-form-panel {
+  padding: 25px 20px;
+  margin: 0 0 20px;
+  max-width: none;
+}
+@media (min-width: 768px) { .soref-form .contact-form-panel { padding: 25px 20px; } }
+
+/* Listes d'activités et de villes voisines : puces chevron comme la carte
+   du secteur (#soref_secteurs) */
+#soref-activite-secteur ul:not(.row),
+#soref-secteur-activites ul:not(.row) { list-style: none; padding-left: 0; }
+#soref-activite-secteur ul:not(.row) > li,
+#soref-secteur-activites ul:not(.row) > li { padding: 4px 0; }
+#soref-activite-secteur ul:not(.row) > li::before,
+#soref-secteur-activites ul:not(.row) > li::before {
+  content: "\276F";
+  margin-right: 10px;
+  color: #79b899;
+  font-size: 0.85em;
+}
+#soref-secteur-activites ul.row { list-style: none; padding-left: 0; }
+#soref-secteur-activites ul.row > li { padding-top: 4px; padding-bottom: 4px; }
+
+/* Image et diapo statique des pages secteur */
+#soref-activite-secteur .img-responsive,
+#soref-secteur-activites .img-responsive { margin-bottom: 15px; border-radius: 4px; }
+#soref-activite-secteur h3,
+#soref-secteur-activites h3 { margin-top: 0; }
+#soref-activite-secteur h3 span,
+#soref-secteur-activites h3 span { color: #9cac25; }
