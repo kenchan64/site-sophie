@@ -1,0 +1,1116 @@
+/* ==========================================================================
+   Sophie Fressingeas — Naturopathe à Saint-Jean-Pied-de-Port
+   Feuille de style reconstruite à partir du thème Drupal d'origine.
+   Valeurs (couleurs, tailles, polices) extraites des CSS agrégés archivés.
+   ==========================================================================
+
+   Palette d'origine :
+   - Vert accent   : #9cac25  (hover #6f7a1a)
+   - Vert foncé    : #2b443e  (titres, fond du bloc contact)
+   - Doré          : #d5a41b  (barre de navigation, damier, bas de page)
+   - Vert bouton 2 : #374f3b  (hover #223125)
+   - Texte courant : #545353
+   - Liens         : #58a680  (hover #79b899)
+   - Fonds clairs  : #fbfcff / #fff9f6
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { font-size: 16px; }
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.7em;
+  font-weight: 400;
+  color: #545353;
+  background-color: #fff;
+}
+
+img { max-width: 100%; height: auto; border: 0; }
+
+a {
+  color: #58a680;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+a:hover,
+a:focus { color: #79b899; text-decoration: none; }
+
+/* Titres : Raleway 600, vert foncé, centrés, soulignés d'un trait vert */
+h1,
+h2.block-title {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 53px;
+  line-height: 1.2em;
+  color: #2b443e;
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto 30px;
+}
+h1::after,
+h2.block-title::after,
+.title-underline::after {
+  display: block;
+  content: "";
+  height: 2px;
+  background: #9cac25;
+  margin: 10px auto;
+  position: relative;
+  width: 64px;
+  max-width: 100%;
+}
+h2.block-title { margin: 0 auto 50px; }
+
+/* --------------------------------------------------------------------------
+   2. Utilitaires
+   -------------------------------------------------------------------------- */
+.container-sm  { max-width: 520px;  margin-left: auto; margin-right: auto; }
+.container-md  { max-width: 850px;  margin-left: auto; margin-right: auto; padding: 0 15px; }
+.container-1170 { max-width: 1170px; margin-left: auto; margin-right: auto; padding: 0 15px; }
+
+.rtecenter { text-align: center; }
+.text-nowrap { white-space: nowrap; }
+.mt-15 { margin-top: 15px !important; }
+.mt-20 { margin-top: 20px !important; }
+.mt-40 { margin-top: 40px !important; }
+.mt-50 { margin-top: 50px !important; }
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+}
+
+.mobile-only { display: block; }
+@media (min-width: 768px) { .mobile-only { display: none; } }
+
+/* --------------------------------------------------------------------------
+   3. Boutons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  border-radius: 10px;
+  transition: 0.2s;
+  z-index: 1;
+  position: relative;
+  margin: 0;
+  padding: 24px 30px;
+  border: none;
+  overflow: hidden;
+  text-decoration: none;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn-primary { color: #ffffff !important; background-color: #9cac25 !important; }
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus { color: #ffffff !important; background-color: #6f7a1a !important; }
+
+.btn-secondary { color: #ffffff !important; background-color: #374f3b !important; }
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus { color: #ffffff !important; background-color: #223125 !important; }
+
+.btn-sm-280 { width: 280px; max-width: 100%; }
+
+/* --------------------------------------------------------------------------
+   4. Barre de navigation (#navbar)
+   -------------------------------------------------------------------------- */
+#navbar {
+  position: absolute;
+  z-index: 80;
+  top: 0;
+  width: 100%;
+  background-color: rgba(213, 164, 27, 0.8);
+  font-family: "Raleway", sans-serif;
+}
+#navbar.affix {
+  position: fixed;
+  top: 0;
+  background-color: #d5a41b;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.nav-inner { width: 100%; max-width: 1366px; margin: 0 auto; }
+
+.nav-header { display: flex; align-items: center; }
+
+.nav-logo img { max-width: 200px; max-height: 40px; margin-left: 30px; }
+
+.nav-name {
+  max-width: 250px;
+  font-size: 14px;
+  line-height: 14px;
+  color: #ffffff;
+  padding: 0 10px 2px 15px;
+  font-weight: 600;
+  max-height: 46px;
+  overflow: hidden;
+  flex: 1;
+}
+.nav-name:hover,
+.nav-name:focus { color: #ffffff; }
+.nav-name span {
+  display: block;
+  position: relative;
+  top: 2px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Bouton burger (mobile) */
+.nav-toggle {
+  display: none;
+  margin: 8px 15px 8px auto;
+  padding: 9px 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.nav-toggle .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+.nav-toggle .icon-bar + .icon-bar { margin-top: 4px; }
+.nav-toggle.is-active .icon-bar:nth-child(2) { opacity: 0; }
+.nav-toggle.is-active .icon-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle.is-active .icon-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.main-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.main-menu li a {
+  display: block;
+  transition: all 0.3s ease-in-out;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 1em;
+  color: rgba(255, 255, 255, 0.7);
+}
+.main-menu li a:hover,
+.main-menu li a:focus,
+.main-menu li.active a { color: #ffffff; }
+
+/* Desktop : menu en ligne pleine largeur, en-tête masqué tant que la page
+   n'est pas défilée (comportement "affix" du site d'origine) */
+@media (min-width: 992px) {
+  .nav-inner { display: flex; }
+
+  .nav-header {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    transition: all 0.3s linear;
+  }
+  #navbar.affix .nav-header {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    width: auto;
+    padding: 0 25px 0 0;
+  }
+
+  .nav-collapse { flex: 1; }
+
+  .main-menu { display: flex; width: 100%; }
+  .main-menu li { display: flex; flex: auto; }
+  .main-menu li a {
+    position: relative;
+    width: 100%;
+    padding: 30px 14px;
+    text-align: center;
+    color: #ffffff;
+  }
+  /* Soulignement vert animé au survol */
+  .main-menu li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 9px;
+    background: #9cac25;
+    transition: 0.3s all ease;
+  }
+  .main-menu li a:hover::after,
+  .main-menu li.active a::after {
+    left: 0;
+    width: 100%;
+  }
+}
+
+/* Mobile : barre fixe + menu déroulant */
+@media (max-width: 991px) {
+  #navbar { position: fixed; }
+  .nav-logo { display: none; }
+  .nav-toggle { display: block; }
+  .nav-name { padding: 8px 10px 8px 15px; }
+  .nav-collapse {
+    display: none;
+    padding: 0 15px 10px;
+  }
+  .nav-collapse.in { display: block; }
+  .main-menu li a { padding: 10px 15px; }
+}
+
+/* --------------------------------------------------------------------------
+   5. Bandeau d'en-tête (hero)
+   -------------------------------------------------------------------------- */
+/* Image du thème d'origine : mdslider-mob.jpg en mobile, mdslider.jpg en desktop */
+#page-header {
+  position: relative;
+  width: 100%;
+  background-image: url(../images/hero-mobile.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sl-encart {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 25px;
+  color: #ffffff;
+  text-align: center;
+}
+.sl-encart a,
+.sl-encart a:hover { color: #ffffff; text-decoration: none; }
+.sl-encart .sl-logo img {
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 155px;
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.4));
+}
+.sl-slogan { margin: 0.4em 0; }
+.sl-slogan strong {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  line-height: 1.2em;
+  font-size: 2.25rem;
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.4));
+}
+.sl-slogan-small {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  font-weight: 500;
+}
+
+.sl-barre-contact {
+  position: relative;
+  z-index: 2;
+  background-color: rgba(169, 169, 169, 0.88);
+  padding: 20px 0;
+  font-size: 14px;
+  text-align: center;
+  color: #ffffff;
+}
+.sl-contact p { margin: 0 0 10px; }
+.sl-contact p:last-child { margin-bottom: 0; }
+
+@media (max-width: 991px) {
+  #page-header { padding-top: 50px; }
+  .sl-encart {
+    max-width: 500px;
+    margin: auto;
+    padding-top: 25px;
+  }
+  .sl-slogan strong { font-size: 1.75rem; }
+}
+
+@media (min-width: 992px) {
+  #page-header {
+    height: 100vh;
+    min-height: 560px;
+    background-image: url(../images/hero.jpg);
+  }
+  .sl-encart {
+    width: 650px;
+    margin-top: 200px;
+    text-align: left;
+  }
+  .sl-encart .sl-logo img { margin: 0; }
+  .sl-barre-contact {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 55%;
+  }
+  .sl-contact {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 15px;
+  }
+  .sl-contact p { margin: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   6. Actualités (carrousel)
+   -------------------------------------------------------------------------- */
+#actu-top { background-color: #fbfcff; }
+
+.actu-slider { margin: 60px 0; overflow: hidden; }
+.actu-slider .slides {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  transition: transform 0.6s ease;
+}
+.actu-slider .slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  text-align: center;
+}
+
+.actu-image { width: 100%; margin-bottom: 20px; }
+.actu-image img {
+  margin: 0 auto;
+  border-radius: 4px;
+  max-width: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.actu-title { margin-bottom: 10px; }
+.actu-title a {
+  color: #2b443e !important;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.2;
+  width: 100%;
+}
+.actu-date {
+  display: inline-block;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  top: -3px;
+  color: #9cac25;
+}
+.actu-body {
+  text-align: justify;
+  margin-bottom: 11px;
+  line-height: 1.5;
+  color: #545353;
+  white-space: pre-line;
+}
+.all-actus {
+  margin-top: 15px;
+  min-width: 220px;
+  max-width: 280px;
+}
+
+@media (max-width: 991px) {
+  .actu-title,
+  .actu-body { max-width: 400px; margin-left: auto; margin-right: auto; }
+  .actu-title { margin-bottom: 20px; }
+  .all-actus { width: 100%; margin: 5px auto; }
+}
+
+@media (min-width: 992px) {
+  .actu-slider .slide {
+    display: flex;
+    text-align: left;
+  }
+  .actu-image {
+    border-radius: 4px;
+    width: 35%;
+    margin-right: 40px;
+    margin-bottom: 0;
+    height: 235px;
+  }
+  .actu-image a { display: block; height: 100%; }
+  .actu-image img { height: 100%; max-width: 400px; }
+  .actu-texte { flex: 1; margin-right: 10px; }
+  .all-actus { float: right; margin: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   7. Contenu principal
+   -------------------------------------------------------------------------- */
+#page-main { padding-top: 30px; }
+@media (min-width: 768px) { #page-main { padding-top: 80px; } }
+
+/* Le h1 de la page garde le style de titre général mais en taille réduite
+   (règle d'origine : body #page-main .page-header h1 { font-size: 1.7em; }) */
+#page-main h1 { font-size: 1.7em; }
+@media (max-width: 480px) { #page-main h1 { font-size: 1.4em !important; } }
+
+/* Liste à puces "chevron" */
+ul.cw-list-ul {
+  padding-left: 20px;
+  list-style: none;
+  text-align: left;
+}
+ul.cw-list-ul li::before {
+  content: "\276F";           /* chevron, remplace le picto FontAwesome \f138 */
+  margin-right: 10px;
+  color: #79b899;
+  font-size: 0.85em;
+}
+ul.list-h1 { margin: 0 auto 10px; max-width: 245px; }
+
+/* --------------------------------------------------------------------------
+   8. Damier de présentation (cw-checkerboard)
+   -------------------------------------------------------------------------- */
+.cw-checkerboard { margin-top: 60px; }
+@media (min-width: 768px) { .cw-checkerboard { margin-top: 100px; } }
+
+.cb-row.bg-one { background-color: #fbfcff; }
+.cb-row.bg-two { background-color: #d5a41b; }
+.cb-row.row-3  { background-color: #fff9f6 !important; }
+
+.cb-inner {
+  max-width: 1920px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cb-txt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px 40px;
+  position: relative;
+}
+
+/* Petit picto décoratif centré au-dessus du titre de chaque rangée
+   (images acc-picto-1/2/3.png du thème d'origine) */
+.cb-txt::before {
+  content: "";
+  position: absolute;
+  top: 65px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.row-1 .cb-txt::before {
+  width: 66px;
+  height: 55px;
+  background-image: url(../images/picto-titre-jmv.png);
+}
+.row-2 .cb-txt::before {
+  width: 80px;
+  height: 85px;
+  background-image: url(../images/picto-titre-naturopathie.png);
+}
+.row-3 .cb-txt::before {
+  width: 66px;
+  height: 67px;
+  background-image: url(../images/picto-titre-knap.png);
+}
+.row-2 .cw-checkerboard-title { margin-top: 60px !important; }
+.cw-checkerboard-title {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 21px !important;
+  line-height: 1.3em;
+  text-align: center;
+  width: 100%;
+  margin: 45px 0 20px !important;
+}
+.cw-checkerboard-title::after {
+  display: block;
+  content: "";
+  height: 2px;
+  background: #9cac25;
+  margin: 10px auto;
+  position: relative;
+  width: 64px;
+  max-width: 100%;
+}
+.cw-checkerboard-btn { text-align: center; }
+
+.col-txt-one .content { color: #545353; }
+.col-txt-one .content .cw-checkerboard-title { color: #2b443e; }
+.col-txt-one .content a:not(.btn) { color: #545353; }
+
+.col-txt-two .content { color: #ffffff; }
+.col-txt-two .content .cw-checkerboard-title { color: #ffffff; }
+.col-txt-two .content a:not(.btn) { color: #ffffff; }
+
+.cb-disclaimer {
+  font-size: 12px;
+  line-height: 1.3em;
+  color: #949393;
+}
+
+.cb-img.col-img-full {
+  min-height: 70vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.cb-img.col-img-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cb-img.col-img-center img { margin: 0 auto; }
+
+@media (min-width: 992px) {
+  .cb-inner { display: flex; }
+  .cb-inner > div { width: 50%; min-height: 500px; }
+  .cb-inner.cb-reverse { flex-direction: row-reverse; }
+
+  .cb-txt { padding: 100px 50px; }
+  .cb-txt .content { max-width: 600px; }
+
+  .cb-img.col-img-full { min-height: 500px; }
+  .cb-img.col-img-center { padding: 65px 50px; }
+  .cb-img.col-img-center img {
+    max-height: 400px;
+    width: auto;
+    border-radius: 20px;
+    box-shadow: 0 9px 46px 0 rgba(0, 0, 0, 0.27);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Appel à l'action + partage
+   -------------------------------------------------------------------------- */
+#page-actions { padding: 60px 0; background-color: #ffffff; }
+
+.block-call-to-action {
+  font-size: 29px;
+  line-height: 0.95em;
+  font-family: "Raleway", sans-serif;
+  padding: 0 15px;
+}
+.cta-label {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 53px;
+  line-height: 1.3em;
+  color: #2b443e;
+  margin-bottom: 15px;
+}
+.cta-label::after {
+  display: block;
+  content: "";
+  height: 2px;
+  background: #9cac25;
+  margin: 10px auto;
+  position: relative;
+  width: 64px;
+  max-width: 100%;
+}
+.cta-number {
+  font-size: 25px;
+  font-family: "Raleway", sans-serif;
+  color: #9cac25;
+}
+.cta-number b { font-weight: 600; }
+.cta-number a { color: #9cac25; }
+.cta-number a:hover,
+.cta-number a:focus { color: #9cac25; }
+
+@media (max-width: 520px) { .cta-label { font-size: 35px !important; } }
+
+/* Boutons de partage (rendu statique du bloc AddToAny d'origine) */
+.block-share { margin-top: 15px; }
+.share-buttons { display: inline-flex; gap: 4px; }
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  transition: opacity 0.2s;
+}
+.share-btn svg { width: 32px; height: 32px; }
+.share-btn:hover { opacity: 0.8; }
+.share-facebook { background-color: #3b5998; }
+.share-twitter  { background-color: #55acee; }
+.share-email    { background-color: #848484; }
+
+/* --------------------------------------------------------------------------
+   10. Points forts (pictos) + bandeau parallax
+   -------------------------------------------------------------------------- */
+.bloc-services {
+  padding: 60px 0;
+  background-color: #fbfcff;
+  color: #545353;
+}
+.bloc-services h2.block-title { max-width: 80%; }
+@media (max-width: 520px) { .bloc-services h2.block-title { font-size: 35px !important; } }
+
+.cw-pictos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.cw-pictos > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+.cw-pictos > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+}
+.cw-pictos .picto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 190px;
+  width: 190px;
+  padding: 20px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  filter: drop-shadow(16px 16px 0px #fff9f6);
+}
+.cw-pictos .picto img {
+  margin: auto;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+.picto-legende {
+  max-width: 280px;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.4;
+  text-align: center;
+  color: #2b443e;
+}
+
+@media (max-width: 767px) { .cw-pictos > div { margin: 25px 30px; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .cw-pictos { justify-content: center; }
+  .cw-pictos > div { margin: 25px 15px; }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  .cw-pictos > div { margin: 25px 10px; }
+  .cw-pictos .picto { width: 165px; height: 165px; }
+  .picto-legende { font-size: 16px; }
+}
+
+/* Images du thème d'origine : parallax-front-mob.jpg en mobile,
+   parallax-front.jpg en desktop */
+.parallax {
+  position: relative;
+  min-height: 45vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  font-family: "Montserrat", sans-serif;
+  font-size: 17px;
+  line-height: 1.3em;
+  color: #ffffff;
+}
+.parallax-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
+  background-image: url(../images/parallax-mobile.jpg);
+}
+.parallax .text-loud {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: 0.025em;
+  color: #ffffff;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.35);
+}
+@media (max-width: 767px) { .parallax { min-height: 350px; } }
+@media (min-width: 768px) {
+  .parallax { min-height: 600px; }
+  .parallax .text-loud { font-size: 41px; }
+}
+@media (min-width: 992px) {
+  .parallax-front { background-image: url(../images/parallax.jpg); }
+}
+
+/* --------------------------------------------------------------------------
+   11. Avis Google
+   -------------------------------------------------------------------------- */
+#avis-client {
+  background-color: #ffffff;
+  padding: 100px 0;
+}
+.avis-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+.avis-item {
+  width: 100%;
+  padding: 0 15px;
+  margin-top: 20px;
+}
+.avis-item img { display: block; margin: 0 auto; }
+@media (min-width: 992px) { .avis-item { width: 33.3333%; } }
+
+/* --------------------------------------------------------------------------
+   12. Pied de page : coordonnées + formulaire (#footer)
+   -------------------------------------------------------------------------- */
+#footer {
+  background-color: #2b443e;
+  color: #ffffff;
+  padding: 60px 0;
+}
+
+.cartouche-footer {
+  font-family: "Raleway", sans-serif;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.3em;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px;
+}
+.cartouche-footer a { color: #ffffff; }
+.cartouche-footer a:hover,
+.cartouche-footer a:focus { color: #ffffff; }
+.ft-denomination { font-size: 35px; font-weight: 600; margin: 0 0 30px; }
+.ft-slogan { margin: 0 0 20px; }
+.ft-slogan strong { font-weight: 600; color: #9cac25; }
+.ft-tel { margin: 0 0 1em; }
+.ft-horaire { margin: 0 0 15px; }
+
+@media (max-width: 480px) { .ft-denomination { font-size: 30px; } }
+
+.bloc-contact-form h2.block-title {
+  color: #ffffff;
+  font-size: 29px;
+  line-height: 1.2em;
+}
+
+/* Champs du formulaire */
+.form-grid { display: flex; flex-wrap: wrap; margin: 0 -5px; }
+.form-item { padding: 0 5px; margin-bottom: 15px; width: 100%; }
+.form-item input,
+.form-item textarea {
+  width: 100%;
+  background-color: rgba(43, 68, 62, 0);
+  border-radius: 2px;
+  border: solid 1px rgba(255, 255, 255, 0.25);
+  box-shadow: none;
+  padding: 8px 12px;
+  color: #ffffff;
+  font-size: 13px;
+  font-family: "Montserrat", sans-serif;
+  min-height: 47px;
+}
+.form-item textarea { min-height: 135px; resize: vertical; }
+.form-item input::placeholder,
+.form-item textarea::placeholder {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #c6dbd6;
+}
+.form-item input:focus,
+.form-item textarea:focus {
+  outline: none;
+  border-bottom-color: #9cac25;
+}
+
+.form-rgpd { margin-bottom: 15px; }
+.form-rgpd label {
+  font-size: 12px;
+  line-height: 1.3em;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+}
+.form-rgpd label a { color: rgba(255, 255, 255, 0.85); }
+.form-rgpd label a:hover { color: #ffffff; }
+.form-rgpd input { margin-right: 5px; }
+
+.form-actions { padding: 0 5px; }
+.form-actions .btn { width: 100%; }
+
+@media (max-width: 991px) {
+  .bloc-contact-form { margin-top: 60px; }
+}
+@media (min-width: 768px) {
+  .form-item.half { width: 50%; }
+}
+@media (min-width: 992px) {
+  .footer-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .cartouche-footer {
+    flex: 0.35;
+    text-align: left;
+  }
+  .cartouche-footer .content { max-width: 355px; }
+  .bloc-contact-form { flex: 0.5; margin-top: 0; }
+  .bloc-contact-form h2.block-title { margin: 0 auto 60px; max-width: 560px; }
+}
+
+/* --------------------------------------------------------------------------
+   13. Widget flottant "Rendez-vous"
+   -------------------------------------------------------------------------- */
+.flottant {
+  display: flex;
+  position: fixed;
+  right: 20px;
+  top: 165px;
+  padding: 0;
+  z-index: 999;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: all 0.5s ease-in-out;
+}
+.flottant-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9cac25;
+  transform: rotate(180deg);
+  position: relative;
+  width: 40px;
+  padding: 25px 15px;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  color: #ffffff;
+  cursor: pointer;
+}
+.flottant-title .chevron {
+  font-size: 70%;
+  margin-top: 15px;
+  transition: transform 0.3s;
+}
+.flottant.mini .flottant-title .chevron { transform: rotate(180deg); }
+
+.flottant-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  box-sizing: content-box;
+  width: 270px;
+  padding: 15px;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  text-align: center;
+}
+.flottant-content > * {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+  margin: 0 0 5px;
+  width: 240px;
+}
+.fl-denomination {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.4em;
+  color: #2b443e;
+}
+.fl-metier {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.25em;
+  color: #545353;
+}
+.fl-tel,
+.fl-tel a {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #9cac25;
+}
+.flottant-content .btn { padding: 18px; font-size: 13px; width: 240px; }
+
+.flottant.mini { right: -1px; }
+.flottant.mini .flottant-content { width: 1px; padding: 15px 0; }
+.flottant.mini .flottant-content > * { opacity: 0; }
+
+@media (max-width: 991px) { .flottant { display: none; } }
+
+/* --------------------------------------------------------------------------
+   14. Zone d'intervention
+   -------------------------------------------------------------------------- */
+.block-map-footer {
+  background-color: #fbfcff;
+  background-image: url(../images/map-bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 60px 20px;
+  color: #545353;
+}
+.block-map-footer h2.block-title {
+  color: #2b443e;
+  font-size: 36px;
+}
+/* Picto "cible" doré au-dessus du titre (remplace l'icône FontAwesome \f05b) */
+.block-map-footer h2.block-title::before {
+  display: block;
+  content: "";
+  width: 57px;
+  height: 57px;
+  margin: 0 auto 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23d5a41b' d='M256 96a160 160 0 1 0 0 320 160 160 0 0 0 0-320zm0 288a128 128 0 1 1 0-256 128 128 0 0 1 0 256zm0-208a80 80 0 1 0 0 160 80 80 0 0 0 0-160zm240 64h-49.7C436.5 154.2 357.8 75.5 272 65.7V16a16 16 0 0 0-32 0v49.7C154.2 75.5 75.5 154.2 65.7 240H16a16 16 0 0 0 0 32h49.7C75.5 357.8 154.2 436.5 240 446.3V496a16 16 0 0 0 32 0v-49.7c85.8-9.8 164.5-88.5 174.3-174.3H496a16 16 0 0 0 0-32zM256 416a160 160 0 0 1-160-160A160 160 0 0 1 256 96a160 160 0 0 1 160 160 160 160 0 0 1-160 160z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.block-map-footer h2.block-title::after { display: none; }
+
+.cw-txt-up-2 { font-size: 1.35em !important; line-height: 1.3em !important; }
+.block-map-footer p { font-size: 1.2em; }
+.sep { display: none; }
+
+@media (min-width: 768px) {
+  .sep { display: inline; margin: 0 5px; }
+}
+@media (min-width: 992px) {
+  .block-map-footer {
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px;
+  }
+}
+@media (max-width: 480px) {
+  .block-map-footer h2.block-title { font-size: 24px; margin-bottom: 30px !important; }
+  .block-map-footer h2.block-title::before { margin-bottom: 25px; width: 47px; height: 47px; }
+}
+
+/* --------------------------------------------------------------------------
+   15. Bas de page (#bottom)
+   -------------------------------------------------------------------------- */
+#bottom {
+  background-color: #d5a41b;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: #ffffff;
+  position: relative;
+  z-index: 10;
+}
+#bottom a,
+#bottom a:hover,
+#bottom a:visited { color: #ffffff; text-decoration: none; }
+
+/* Bloc repliable "En savoir +" */
+.soref-footer { text-align: center; font-size: 14px; }
+.toggle-soref { display: inline-block; }
+#soref-footer-content-collapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  width: 100%;
+  border-radius: 3px;
+  font-size: 14px;
+}
+#soref-footer-content-collapse.show {
+  max-height: 100vh;
+  transition: max-height 0.5s ease-in-out;
+}
+.soref-footer-content {
+  font-size: 13px;
+  text-align: left;
+  padding: 30px 0 10px;
+}
+.soref-footer-title {
+  font-size: 1.1em;
+  line-height: 1.2em;
+}
+.soref-footer-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+.soref-footer-content ul li {
+  padding: 5px 10px 5px 15px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.soref-footer-content ul li::before {
+  content: "\25AA";
+  color: rgba(235, 235, 235, 0.43);
+  position: relative;
+  right: 7px;
+}
+.soref-close { font-size: 13px; }
+@media (min-width: 768px) {
+  .soref-footer-content { display: flex; }
+  .soref-col { width: 33.3333%; padding: 0 15px; }
+}
+
+/* Ligne mentions légales / médiation / crédit */
+.footer-info {
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  margin-top: 20px;
+}
+.footer-info p { line-height: 1.5; }
+.fi-crea img {
+  width: 30px;
+  display: block;
+  margin: 10px auto;
+}
+@media (min-width: 992px) {
+  .footer-info {
+    display: flex;
+    text-align: left;
+  }
+  .fi-col { padding: 0 15px; }
+  .fi-legal { width: 41.6667%; }
+  .fi-mediation { width: 25%; }
+  .fi-crea { width: 33.3333%; margin-top: 10px; text-align: right; }
+  .fi-crea img { float: right; margin-left: 15px; display: inline; }
+}
