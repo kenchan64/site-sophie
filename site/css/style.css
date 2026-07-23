@@ -1114,3 +1114,292 @@ ul.list-h1 { margin: 0 auto 10px; max-width: 245px; }
   .fi-crea { width: 33.3333%; margin-top: 10px; text-align: right; }
   .fi-crea img { float: right; margin-left: 15px; display: inline; }
 }
+
+/* --------------------------------------------------------------------------
+   16. Pages intérieures — bandeau d'en-tête « slim »
+   (règles .not-front du thème d'origine, images mdslider-slim*.jpg)
+   -------------------------------------------------------------------------- */
+body.page-inner #page-header {
+  background-image: url(../images/hero-slim-mobile.jpg);
+}
+@media (min-width: 992px) {
+  body.page-inner #page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 325px;
+    min-height: 0;
+    padding: 75px 40px 15px;
+    background-image: url(../images/hero-slim.jpg);
+  }
+  body.page-inner .sl-encart {
+    display: flex;
+    align-items: center;
+    width: auto;
+    margin-top: 0;
+    padding: 0 20px 0 0;
+    text-align: left;
+  }
+  body.page-inner .sl-encart .sl-logo img { max-height: 120px; margin: 0; }
+  body.page-inner .sl-infos { margin-left: 30px; }
+  body.page-inner .sl-slogan strong { font-size: 1.9rem; }
+  body.page-inner .sl-barre-contact {
+    position: static;
+    width: auto;
+    background: transparent;
+    padding: 0 15px;
+  }
+  body.page-inner .sl-contact { display: block; padding: 0; }
+  body.page-inner .sl-contact p { margin: 0 0 12px; }
+  body.page-inner .sl-contact p:last-child { margin: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   17. Pages intérieures — zone de contenu (#inner-page-section)
+   -------------------------------------------------------------------------- */
+#inner-page-section #content-section {
+  padding: 30px 15px 0;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  #inner-page-section #content-section { padding-top: 80px; }
+}
+#inner-page-section .page-header { margin: 0 0 20px; }
+
+/* Titres secondaires du contenu */
+#inner-page-section h2,
+#inner-page-section h3,
+#inner-page-section h4 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  color: #2b443e;
+  line-height: 1.3em;
+}
+#inner-page-section .soref-intro h2,
+#inner-page-section .container-md > h2 { font-size: 1.5em; }
+#inner-page-section h3 { font-size: 1.25em; }
+#inner-page-section h4 { font-size: 1.1em; }
+#inner-page-section ul { text-align: left; }
+
+/* Fil d'Ariane */
+#cw-ariane {
+  font-size: 0.75em;
+  line-height: 1.6em;
+  margin-bottom: 25px;
+  text-align: center;
+  position: relative;
+  top: -15px;
+}
+#cw-ariane a { color: #a9a9a9; }
+
+/* Vignette de la rubrique (colonne flottante à droite) */
+#soref-categories .children { margin-bottom: 20px; }
+#soref-categories .term-figure img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 460 / 272;
+  object-fit: cover;
+  border-radius: 4px;
+}
+@media (min-width: 768px) {
+  #soref-categories .children {
+    float: right;
+    width: 33.3333%;
+    padding-left: 30px;
+  }
+  #soref-categories::after { content: ""; display: block; clear: both; }
+}
+
+/* Encadré clair (cw-ibox) */
+.cw-ibox {
+  border-radius: 4px;
+  padding: 20px;
+  overflow: auto;
+  background-color: #fbfcff;
+  transition: 0.1s ease-in-out;
+}
+.cw-ibox:hover {
+  transform: scale(1.03, 1.03);
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
+  transition: 0.3s ease-in-out;
+}
+@media (min-width: 768px) {
+  .cw-ibox { padding: 50px; margin: 0 auto; }
+  .sm-p-60 { padding: 60px; }
+}
+
+/* Mini-grille Bootstrap reprise pour les contenus archivés */
+.btgrid .row { display: flex; flex-wrap: wrap; margin: 0 -15px; }
+.btgrid .col { padding: 0 15px; width: 100%; }
+@media (min-width: 992px) {
+  .btgrid .col-md-4 { width: 33.3333%; }
+  .btgrid .col-md-5 { width: 41.6667%; }
+  .btgrid .col-md-6 { width: 50%; }
+  .btgrid .col-md-7 { width: 58.3333%; }
+  .btgrid .col-md-8 { width: 66.6667%; }
+  .btgrid .col-lg-12 { width: 100%; }
+}
+
+/* Classes d'origine (Drupal/RTE) réutilisées dans les contenus */
+.rtejustify { text-align: justify; }
+.img-responsive { display: block; max-width: 100%; height: auto; }
+.img-rounded { border-radius: 6px; }
+.img-center { margin-left: auto; margin-right: auto; }
+.text-annotation { font-size: 12px; line-height: 1.3em; }
+@media (min-width: 992px) {
+  .md-img-article { max-width: 650px; }
+}
+
+/* Espacements (utilitaires du thème d'origine) */
+.xs-mb-0  { margin-bottom: 0 !important; }
+.xs-mb-5  { margin-bottom: 5px !important; }
+.xs-mb-10 { margin-bottom: 10px !important; }
+.xs-mb-15 { margin-bottom: 15px !important; }
+.xs-mb-20 { margin-bottom: 20px !important; }
+.xs-mb-30 { margin-bottom: 30px !important; }
+.xs-mb-40 { margin-bottom: 40px !important; }
+.xs-mt-15 { margin-top: 15px !important; }
+.xs-mt-20 { margin-top: 20px !important; }
+.xs-mt-30 { margin-top: 30px !important; }
+.xs-mt-40 { margin-top: 40px !important; }
+.xs-mt-50 { margin-top: 50px !important; }
+@media (min-width: 992px) {
+  .md-mt-30 { margin-top: 30px !important; }
+  .md-mt-60 { margin-top: 60px !important; }
+  .md-mb-60 { margin-bottom: 60px !important; }
+  .md-pl-10 { padding-left: 10px !important; }
+  .md-pr-10 { padding-right: 10px !important; }
+}
+
+/* --------------------------------------------------------------------------
+   18. Galerie d'articles liés (listing-galerie, effet au survol)
+   -------------------------------------------------------------------------- */
+.listing-galerie { width: 100%; }
+.listing-galerie .view-content {
+  padding: 25px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.listing-galerie .views-row {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 460px;
+  margin: 0.5%;
+}
+@media (min-width: 768px) { .listing-galerie .views-row { width: 48%; } }
+@media (min-width: 992px) { .listing-galerie .views-row { width: 32%; } }
+
+.listing-galerie figure { background: #000; margin: 0; position: relative; }
+.listing-galerie figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 460 / 272;
+  object-fit: cover;
+  opacity: 0.5;
+  transition: opacity 0.25s ease-in-out;
+}
+.listing-galerie figure:hover img { opacity: 0.3; }
+
+.listing-galerie figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  color: #fff;
+}
+.listing-galerie figcaption > div {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  padding: 0 5%;
+}
+.listing-galerie .g-title {
+  margin: 0;
+  font-size: 16px !important;
+  line-height: 1.4em;
+  text-align: left;
+  color: #ffffff;
+}
+.listing-galerie .g-title a { color: #ffffff !important; font-weight: 600; }
+.listing-galerie .g-body {
+  font-size: 11px;
+  line-height: 1.4em;
+  text-align: justify;
+  color: #ffffff;
+  margin: 10px 0;
+  max-height: 8.5em;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  white-space: pre-line;
+}
+.listing-galerie .g-savoir-plus {
+  padding: 4px 10px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  display: inline-block;
+  float: right;
+  color: #000;
+  font-size: 11px;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.listing-galerie figure:hover .g-body,
+.listing-galerie figure:hover .g-savoir-plus { opacity: 1; }
+/* lien plein cadre (invisible) */
+.listing-galerie figcaption > a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  opacity: 0;
+}
+
+/* Bloc « vous propose aussi » */
+.soref-bottom { clear: both; margin-top: 40px; text-align: center; }
+.soref-bottom > div { max-width: 660px; margin: 0 auto; }
+.soref-isalso-title { font-size: 1.3em; font-weight: bold; }
+.soref-isalso-link { margin-top: 15px; }
+.soref-isalso-link a {
+  color: #a7a7a7;
+  border-right: 1.5px solid #a7a7a7;
+  padding: 0 15px;
+  font-size: 0.95em;
+  display: inline-block;
+}
+.soref-isalso-link a:last-child { border: none; }
+
+/* --------------------------------------------------------------------------
+   19. Formulaire pleine page (contact / rendez-vous) — panneau vert foncé
+       (réutilise les styles .form-item / .form-rgpd du pied de page)
+   -------------------------------------------------------------------------- */
+.contact-form-panel {
+  background-color: #2b443e;
+  border-radius: 8px;
+  padding: 40px 25px;
+  margin: 40px auto;
+  max-width: 850px;
+  color: #ffffff;
+}
+@media (min-width: 768px) { .contact-form-panel { padding: 50px 60px; } }
+.contact-form-panel h2.block-title {
+  color: #ffffff;
+  font-size: 29px;
+  line-height: 1.2em;
+  margin: 0 auto 40px;
+}
+.contact-direct-liens a { margin: 5px 8px; }
