@@ -1403,3 +1403,129 @@ body.page-inner #page-header {
   margin: 0 auto 40px;
 }
 .contact-direct-liens a { margin: 5px 8px; }
+
+/* --------------------------------------------------------------------------
+   20. Actualités et articles archivés : liste paginée, article, diapo,
+       « voir aussi », plan du site, carte du secteur
+   -------------------------------------------------------------------------- */
+/* Liste des actualités (grille reprise du listing Drupal .news-listing) */
+.news-listing .views-row-odd,
+.news-listing .views-row-even {
+  padding: 25px 0;
+  border-bottom: 1px solid #e4e8e0;
+}
+.news-listing .views-row-last { border-bottom: none; }
+.news-listing h2 {
+  text-align: left;
+  font-size: 22px;
+  margin: 0 0 5px;
+}
+.news-listing h2 a { color: #2b443e !important; }
+.news-listing .date,
+.date-display-single {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9cac25;
+}
+.news-listing .date { margin-bottom: 10px; }
+.news-listing p { text-align: justify; }
+.news-listing .goto-actu { text-align: right; }
+.news-listing .goto-actu a { font-weight: 600; color: #79b899; }
+/* la liste réutilise la classe .actu-image du carrousel : on neutralise
+   ici les dimensions spécifiques au carrousel de la page d'accueil */
+.news-listing .actu-image { width: 100%; margin: 0 0 15px; height: auto; }
+.news-listing .actu-image img { border-radius: 4px; width: 100%; max-width: 460px; height: auto; }
+@media (min-width: 768px) {
+  .news-listing .row { display: flex; }
+  .news-listing .actu-image { width: 33.3333%; margin: 0 30px 0 0; }
+  .news-listing .actu-image a { display: block; height: auto; }
+  .news-listing .actu-text { flex: 1; }
+}
+
+/* Pagination */
+.text-center { text-align: center; }
+ul.pagination {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0 0;
+  display: inline-block;
+}
+ul.pagination li { display: inline-block; margin: 0 3px; }
+ul.pagination li a,
+ul.pagination li span {
+  display: inline-block;
+  padding: 6px 13px;
+  border: 1px solid #dbe3d6;
+  border-radius: 4px;
+  color: #2b443e;
+}
+ul.pagination li.active span {
+  background-color: #9cac25;
+  border-color: #9cac25;
+  color: #ffffff;
+}
+ul.pagination li a:hover { background-color: #f3f6ee; }
+
+/* Article d'actualité (node-actualite) */
+.node-actualite { max-width: 850px; margin: 0 auto; }
+.node-actualite .field-name-field-actu-image img {
+  margin: 0 auto;
+  border-radius: 4px;
+}
+.date-actu { text-align: center; margin: 15px 0 25px; }
+.node-actualite .field-name-body { text-align: left; }
+
+/* Diapo des articles thématiques (annoncesoref) : rendu statique */
+#diapo-soref { margin-bottom: 20px; }
+#diapo-soref img {
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+@media (min-width: 768px) {
+  #diapo-soref.sm-pull-right {
+    float: right;
+    width: 50%;
+    padding-left: 30px;
+  }
+}
+#annoncesoref .body { text-align: left; }
+#annoncesoref .body::after { content: ""; display: block; clear: both; }
+
+/* Blocs annexes soref (page blog, intro requête) */
+#intro-requete { margin-bottom: 20px; }
+
+/* Carte du secteur géographique */
+#soref_secteurs .row { display: flex; flex-wrap: wrap; }
+#soref_secteurs .col-sm-12 { width: 100%; }
+#soref_secteurs .col-sm-8 { width: 100%; }
+#soref_secteurs .col-sm-4 { width: 100%; }
+@media (min-width: 768px) {
+  #soref_secteurs .col-sm-8 { width: 66.6667%; }
+  #soref_secteurs .col-sm-4 { width: 33.3333%; }
+}
+#soref_secteurs ul { list-style: none; padding-left: 0; }
+#soref_secteurs ul li::before {
+  content: "\276F";
+  margin-right: 10px;
+  color: #79b899;
+  font-size: 0.85em;
+}
+#map-soref img { margin: 0 auto; }
+
+/* Plan du site */
+#site-map ul.site-map-menu {
+  list-style: none;
+  padding-left: 0;
+  max-width: 300px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+#site-map ul.site-map-menu li { padding: 8px 0; border-bottom: 1px solid #e4e8e0; }
+#site-map ul.site-map-menu li:last-child { border-bottom: none; }
+#site-map ul.site-map-menu a { font-weight: 600; color: #2b443e; }
