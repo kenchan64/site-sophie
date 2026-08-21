@@ -1710,3 +1710,24 @@ ul.pagination li a:hover { background-color: #f3f6ee; }
   .fl-tel .loud-text a { flex: 1 1 auto; width: 100%; box-sizing: border-box; white-space: nowrap; line-height: 1.2; display: flex; align-items: center; justify-content: center; }
   .flottant-content > p.mt-15 .btn { height: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
 }
+
+/* --------------------------------------------------------------------------
+   25. Mobile : mode sombre forcé, bandeau d'accueil, texte de la barre
+   -------------------------------------------------------------------------- */
+/* Le site est clair : on refuse le "mode sombre automatique" des navigateurs mobiles */
+:root { color-scheme: only light; }
+
+@media (max-width: 991px) {
+  /* Bandeau d'accueil : vraie hauteur + cadrage sur les bols, au lieu d'une tranche zoomée */
+  #page-header {
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-position: center bottom;
+    padding-top: 60px;
+  }
+  /* Nom + métier dans la barre du menu : ne plus rogner "Saint-Jean-Pied-de-Port" */
+  .nav-name { max-width: none; max-height: none; line-height: 16px; padding: 6px 10px 6px 15px; }
+  .nav-name span { top: 0; font-size: 11px; line-height: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
