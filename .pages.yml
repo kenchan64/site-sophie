@@ -1,0 +1,364 @@
+# =============================================================================
+#  Configuration de Pages CMS (https://app.pagescms.org) pour le site de Sophie Fressingeas
+#  -----------------------------------------------------------------------------
+#  Ce fichier décrit ce que la cliente peut modifier depuis l'interface Pages CMS :
+#    - les articles (dossier docs/_articles),
+#    - le texte des pages principales,
+#    - les paramètres généraux (téléphone, e-mail, horaires...).
+#  Le site est construit par GitHub Pages (Jekyll) à partir du dossier docs/.
+#
+#  IMPORTANT : Pages CMS n'enregistre que les champs déclarés ici. Tout champ présent
+#  dans l'en-tête d'un fichier (layout, permalink, redirect_from...) doit donc être
+#  déclaré, au besoin en « hidden: true », sinon il serait effacé à la sauvegarde.
+# =============================================================================
+
+# Où sont rangées les images : dans docs/images (les images existantes du site y sont
+# déjà ; les nouvelles photos envoyées depuis le CMS y sont ajoutées — on peut créer un
+# sous-dossier « uploads » depuis l'onglet Médias pour les ranger). L'adresse écrite
+# dans les contenus est /images/...
+media:
+  input: docs/images
+  output: /images
+  extensions: [jpg, jpeg, png, gif, webp, svg]
+
+# Champs réutilisés dans plusieurs endroits (référencés par « component: nom »)
+components:
+  titre_seo:
+    label: Titre pour Google (optionnel)
+    type: string
+    description: Titre affiché dans les résultats de recherche. Si vide, le titre de la page est utilisé.
+  description:
+    label: Description pour Google (optionnel)
+    type: text
+    description: Phrase de présentation affichée dans les résultats de recherche (150 caractères environ).
+  corps_html:
+    label: Texte
+    type: rich-text
+    options:
+      format: html
+  # Champs techniques des pages : conservés tels quels, invisibles dans le formulaire
+  cache_texte:
+    type: string
+    hidden: true
+  cache_liste:
+    type: string
+    list: true
+    hidden: true
+
+content:
+  # ---------------------------------------------------------------- Articles
+  - name: articles
+    label: Articles
+    description: Les articles du blog. Un nouvel article est publié à l'adresse /actualites/nom-de-l-article/ ; choisissez sa rubrique dans le formulaire.
+    type: collection
+    path: docs/_articles/actualites
+    format: yaml-frontmatter
+    filename: "{primary}.html"
+    view:
+      fields: [title, date, rubrique]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields: &champs_article
+      - name: title
+        label: Titre de l'article
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: rubrique
+        label: Rubrique
+        type: select
+        required: true
+        default: Actualités
+        options:
+          values: [Actualités, Méthode JMV, Naturopathie, Knap]
+      - name: image
+        label: Photo principale
+        type: image
+        description: Photo affichée en haut de l'article et dans les listes (format paysage conseillé, environ 1200 x 800 pixels).
+      - name: image_alt
+        label: Description de la photo
+        type: string
+        description: Courte description de la photo (utile pour le référencement et les malvoyants).
+      - name: resume
+        label: Résumé
+        type: text
+        description: 2 ou 3 phrases affichées dans les listes (Blog, Actualités, carrousel de l'accueil). Si vide, le début du texte est utilisé.
+      - name: body
+        component: corps_html
+        label: Texte de l'article
+      - name: afficher_date
+        label: Afficher la date sur l'article
+        type: boolean
+        default: true
+      - name: masque_blog
+        label: Ne pas afficher dans le Blog
+        type: boolean
+        default: false
+        description: À cocher pour qu'un article reste accessible par son adresse sans apparaître dans la page Blog (par exemple un doublon).
+      - name: titre_seo
+        component: titre_seo
+      - name: description
+        component: description
+      - name: modele
+        component: cache_texte
+
+  - name: articles-anciens
+    label: Articles (anciennes rubriques)
+    description: Tous les articles classés par dossier (méthode JMV, naturopathie, Knap, pages « blog »…). Pour créer un nouvel article, utilisez plutôt « Articles ».
+    type: collection
+    path: docs/_articles
+    subfolders: true
+    format: yaml-frontmatter
+    filename: "{primary}.html"
+    view:
+      fields: [title, date, rubrique]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields: *champs_article
+
+  # ---------------------------------------------------------------- Pages
+  - name: pages
+    label: Pages
+    type: group
+    items:
+      - name: accueil
+        label: Accueil
+        type: file
+        path: docs/index.html
+        format: yaml-frontmatter
+        fields:
+          - name: title
+            label: Titre principal (h1)
+            type: string
+            required: true
+          - name: body
+            component: corps_html
+            label: Texte d'introduction
+          - name: blocs
+            label: Les 3 spécialités (damier)
+            type: object
+            list: true
+            fields:
+              - name: titre
+                label: Titre
+                type: string
+                required: true
+              - name: texte
+                component: corps_html
+              - name: image
+                label: Image
+                type: image
+              - name: image_alt
+                label: Description de l'image
+                type: string
+              - name: style_image
+                label: Présentation de l'image
+                type: select
+                default: fond
+                options:
+                  values:
+                    - { name: fond, label: "Image en fond (pleine hauteur)" }
+                    - { name: centre, label: "Image centrée" }
+              - name: bouton_texte
+                label: Texte du bouton
+                type: string
+              - name: bouton_lien
+                label: Lien du bouton
+                type: string
+                description: "Adresse de la page, par exemple /methode-jmv/sf/6/"
+          - name: titre_seo
+            component: titre_seo
+          - name: description
+            component: description
+          - name: layout
+            component: cache_texte
+          - name: redirect_from
+            component: cache_liste
+
+      - name: presentation
+        label: Présentation
+        type: file
+        path: docs/presentation-de-votre-naturopathe/index.html
+        format: yaml-frontmatter
+        fields: &champs_categorie
+          - name: title
+            label: Titre de la page
+            type: string
+            required: true
+          - name: image
+            label: Vignette (photo à droite)
+            type: image
+          - name: image_alt
+            label: Description de la vignette
+            type: string
+          - name: body
+            component: corps_html
+            label: Texte de la page
+          - name: galerie
+            label: Articles mis en avant en bas de page
+            type: string
+            list: true
+            description: "Adresse de chaque article, par exemple /actualites/allergie/ (l'ordre est respecté)."
+          - name: titre_seo
+            component: titre_seo
+          - name: description
+            component: description
+          - name: ariane_nom
+            component: cache_texte
+          - name: layout
+            component: cache_texte
+          - name: permalink
+            component: cache_texte
+          - name: redirect_from
+            component: cache_liste
+
+      - name: methode-jmv
+        label: Méthode JMV
+        type: file
+        path: docs/methode-jmv/sf/6/index.html
+        format: yaml-frontmatter
+        fields: *champs_categorie
+
+      - name: naturopathie
+        label: Naturopathie
+        type: file
+        path: docs/naturopathe/sf/8/index.html
+        format: yaml-frontmatter
+        fields: *champs_categorie
+
+      - name: knap
+        label: Knap
+        type: file
+        path: docs/knap/sf/9/index.html
+        format: yaml-frontmatter
+        fields: *champs_categorie
+
+      - name: contact
+        label: Contact
+        type: file
+        path: docs/contact.html
+        format: yaml-frontmatter
+        fields: &champs_contact
+          - name: title
+            label: Titre de la page
+            type: string
+            required: true
+          - name: body
+            component: corps_html
+            label: Texte d'introduction
+          - name: sujet_formulaire
+            label: Objet des e-mails reçus depuis ce formulaire
+            type: string
+          - name: titre_seo
+            component: titre_seo
+          - name: description
+            component: description
+          - name: layout
+            component: cache_texte
+          - name: permalink
+            component: cache_texte
+          - name: ariane
+            component: cache_texte
+
+      - name: rendez-vous
+        label: Rendez-vous
+        type: file
+        path: docs/rendez-vous-naturopathe-soins-energetiques-sophie-fressingeas/index.html
+        format: yaml-frontmatter
+        fields: *champs_contact
+
+      - name: merci
+        label: Merci (après envoi d'un message)
+        type: file
+        path: docs/merci/index.html
+        format: yaml-frontmatter
+        fields: &champs_page_simple
+          - name: title
+            label: Titre de la page
+            type: string
+            required: true
+          - name: body
+            component: corps_html
+            label: Texte de la page
+          - name: titre_seo
+            component: titre_seo
+          - name: description
+            component: description
+          - name: layout
+            component: cache_texte
+          - name: permalink
+            component: cache_texte
+          - name: ariane
+            component: cache_texte
+
+      - name: liens-utiles
+        label: Liens utiles
+        type: file
+        path: docs/liens-utiles/index.html
+        format: yaml-frontmatter
+        fields: *champs_page_simple
+
+      - name: mentions-legales
+        label: Mentions légales
+        type: file
+        path: docs/mentions-legales/index.html
+        format: yaml-frontmatter
+        fields: *champs_page_simple
+
+  # ---------------------------------------------------------------- Paramètres
+  - name: parametres
+    label: Paramètres
+    description: Coordonnées et informations affichées sur toutes les pages (en-tête, pied de page, widget Rendez-vous).
+    type: file
+    path: docs/_data/infos.yml
+    format: yaml
+    fields:
+      - name: nom
+        label: Nom
+        type: string
+        required: true
+      - name: metier
+        label: Métier et ville (sous le nom)
+        type: string
+        required: true
+        description: "Exemple : Naturopathe à Saint-Jean-Pied-de-Port"
+      - name: slogan
+        label: Phrase d'accroche du bandeau
+        type: string
+      - name: telephone
+        label: Téléphone
+        type: string
+        required: true
+      - name: email
+        label: Adresse e-mail
+        type: string
+        required: true
+      - name: tidycal
+        label: Lien de prise de rendez-vous en ligne (TidyCal)
+        type: string
+      - name: horaires
+        label: Horaires (une ligne par entrée)
+        type: string
+        list: true
+      - name: zone
+        label: Zone d'intervention (pied de page)
+        type: string
+        list: true
+      - name: phrase_forte
+        label: Phrase mise en avant (bandeau vert)
+        type: string
+      - name: formspree_id
+        label: Identifiant Formspree (formulaires de contact)
+        type: string
+        description: "Identifiant de 8 caractères fourni par https://formspree.io (compte à créer avec l'adresse e-mail ci-dessus). Tant qu'il vaut VOTRE_ID, les formulaires n'envoient rien."

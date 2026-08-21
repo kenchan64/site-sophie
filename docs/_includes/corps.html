@@ -3,8 +3,10 @@
   liens et images écrits « à la racine » (href="/..." et src="/...") par le baseurl du site.
   Les contenus édités dans Pages CMS restent ainsi de simples adresses /images/..., /actualites/...
   qui fonctionnent à la fois sous https://kenchan64.github.io/site-sophie/ et sur le domaine final.
+  L'opération est idempotente : un lien déjà préfixé (produit par relative_url dans un include)
+  n'est pas préfixé deux fois.
 {%- endcomment -%}
 {%- capture href_base %}href="{{ site.baseurl }}/{% endcapture -%}
 {%- capture src_base %}src="{{ site.baseurl }}/{% endcapture -%}
 {%- capture url_base %}url({{ site.baseurl }}/{% endcapture -%}
-{{ include.html | replace: 'href="/', href_base | replace: 'src="/', src_base | replace: 'url(/', url_base }}
+{{ include.html | replace: href_base, 'href="/' | replace: src_base, 'src="/' | replace: url_base, 'url(/' | replace: 'href="/', href_base | replace: 'src="/', src_base | replace: 'url(/', url_base }}

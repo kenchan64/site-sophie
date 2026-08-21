@@ -26,13 +26,29 @@ Puis dans GitHub : Settings → Pages → Custom domain : `www.sophiefressingeas
 et cocher **Enforce HTTPS** quand la case devient disponible (jusqu'à 24 h de propagation).
 
 ## Mettre à jour le site ensuite
-Modifier les fichiers dans `docs/`, puis :
+- La cliente passe par **Pages CMS** (https://app.pagescms.org) : voir `docs-admin/MODE-D-EMPLOI.md`.
+  La configuration de l'interface est dans `.pages.yml` (racine du dépôt).
+- En ligne de commande, modifier les fichiers dans `docs/`, puis :
    git add -A
    git commit -m "Description de la modification"
    git push
-Le site en ligne se met à jour en 1-2 minutes.
+  GitHub Pages reconstruit le site (Jekyll) en 1-2 minutes.
+
+## Structure technique (Jekyll, construit par GitHub Pages)
+- `docs/_config.yml`     : réglages (url, baseurl, version des assets `assets_version` à incrémenter
+                           quand on modifie css/js, extensions jekyll-redirect-from et jekyll-sitemap)
+- `docs/_layouts/`       : gabarits (default, page, article, categorie, contact, home)
+- `docs/_includes/`      : en-tête, menu, bandeau, pied de page, formulaire Formspree, galeries...
+- `docs/_articles/`      : un fichier par article ; l'adresse = chemin du fichier (actualites/allergie.html -> /actualites/allergie/)
+- `docs/_data/infos.yml` : téléphone, e-mail, horaires, identifiant Formspree...
+- `docs-admin/INVENTAIRE-URLS.tsv` : correspondance entre chaque ancienne URL et son fichier source
+- `docs-admin/verifier.pl`         : contrôles sans Jekyll (perl docs-admin/verifier.pl)
+
+## Basculement sur le nom de domaine
+Dans `docs/_config.yml`, mettre `url: "https://www.sophiefressingeas-jmv.com"` et `baseurl: ""`,
+puis commit + push. Rien d'autre à changer : tous les liens sont construits avec relative_url.
 
 ## Reste à configurer
-- Formulaire de contact : créer un compte gratuit sur https://formspree.io, créer un formulaire,
-  puis remplacer `VOTRE_ID` dans les pages concernées (contact.html, rendez-vous, rappel gratuit, demande d'information, pages secteur).
-- Adresse e-mail : remplacer `contact@sophiefressingeas-jmv.com` par la vraie adresse.
+- Formulaires de contact : créer un compte gratuit sur https://formspree.io avec l'adresse
+  sophie.fressingeas33@gmail.com, créer un formulaire, puis reporter son identifiant dans
+  `docs/_data/infos.yml` (champ `formspree_id`, ou via Pages CMS > Paramètres).

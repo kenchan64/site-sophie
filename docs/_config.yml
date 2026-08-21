@@ -17,7 +17,7 @@ baseurl: "/site-sophie"
 # Numéro de version ajouté derrière css/style.css et js/main.js (?v=...).
 # À incrémenter (ex. 20260821c) à chaque modification du CSS ou du JS pour forcer
 # les téléphones et navigateurs à recharger les fichiers au lieu d'utiliser leur cache.
-assets_version: 20260821b
+assets_version: 20260821d
 
 timezone: Europe/Paris
 encoding: utf-8
@@ -41,10 +41,6 @@ defaults:
       type: articles
     values:
       layout: article
-  - scope:
-      path: ""
-    values:
-      layout: page
 
 # Jekyll ne doit pas traiter les fichiers de contenu comme du Markdown
 markdown: kramdown
