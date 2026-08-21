@@ -288,6 +288,7 @@ h2.block-title { margin: 0 auto 50px; }
 /* Image du thème d'origine : mdslider-mob.jpg en mobile, mdslider.jpg en desktop */
 #page-header {
   position: relative;
+  display: flow-root; /* empêche la marge du .sl-encart de "fuir" hors du bandeau (bande blanche) */
   width: 100%;
   background-image: url(../images/hero-mobile.jpg);
   background-position: center center;
@@ -742,7 +743,7 @@ ul.list-h1 { margin: 0 auto 10px; max-width: 245px; }
   background-repeat: no-repeat;
   font-family: "Montserrat", sans-serif;
   font-size: 17px;
-  line-height: 1.3em;
+  line-height: 1.3; /* sans unité : hérité proportionnellement par le texte en 41px */
   color: #ffffff;
 }
 .parallax-front {
@@ -1590,3 +1591,13 @@ ul.pagination li a:hover { background-color: #f3f6ee; }
 #soref-secteur-activites h3 { margin-top: 0; }
 #soref-activite-secteur h3 span,
 #soref-secteur-activites h3 span { color: #9cac25; }
+
+/* --------------------------------------------------------------------------
+   22. Ajustements (août 2026)
+   -------------------------------------------------------------------------- */
+/* Barre grise RDV/téléphone du bandeau d'accueil : masquée sur ordinateur
+   (le widget flottant "Rendez-vous" suffit), conservée sur mobile où le widget n'existe pas. */
+@media (min-width: 992px) { .sl-barre-contact { display: none; } }
+.liens-utiles-list { list-style: none; padding: 0; margin: 20px 0; }
+.liens-utiles-list li { padding: 10px 0 10px 22px; border-bottom: 1px solid #eee; position: relative; }
+.liens-utiles-list li::before { content: "›"; position: absolute; left: 0; color: #9cac25; font-weight: 700; }
