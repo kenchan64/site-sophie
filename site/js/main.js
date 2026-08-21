@@ -87,3 +87,29 @@
     }
   });
 })();
+
+/* 7. Page Blog : filtres par rubrique ------------------------------------- */
+(function () {
+  "use strict";
+  var filters = document.querySelectorAll(".blog-filter");
+  var items = document.querySelectorAll(".blog-item");
+  var empty = document.querySelector(".blog-empty");
+  if (!filters.length || !items.length) { return; }
+  filters.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var filter = btn.getAttribute("data-filter");
+      var visible = 0;
+      filters.forEach(function (b) {
+        var active = b === btn;
+        b.classList.toggle("is-active", active);
+        b.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+      items.forEach(function (item) {
+        var show = filter === "all" || item.getAttribute("data-rubrique") === filter;
+        item.classList.toggle("is-hidden", !show);
+        if (show) { visible++; }
+      });
+      if (empty) { empty.hidden = visible > 0; }
+    });
+  });
+})();
