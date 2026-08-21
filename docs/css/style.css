@@ -1597,9 +1597,9 @@ ul.pagination li a:hover { background-color: #f3f6ee; }
 /* --------------------------------------------------------------------------
    22. Ajustements (août 2026)
    -------------------------------------------------------------------------- */
-/* Barre grise RDV/téléphone du bandeau d'accueil : masquée sur ordinateur
-   (le widget flottant "Rendez-vous" suffit), conservée sur mobile où le widget n'existe pas. */
-@media (min-width: 992px) { .sl-barre-contact { display: none; } }
+/* Barre grise RDV/téléphone des bandeaux (accueil et pages intérieures) : supprimée partout.
+   Le widget flottant (ordinateur) et la barre fixe en bas (mobile) la remplacent. */
+.sl-barre-contact { display: none !important; }
 .liens-utiles-list { list-style: none; padding: 0; margin: 20px 0; }
 .liens-utiles-list li { padding: 10px 0 10px 22px; border-bottom: 1px solid #eee; position: relative; }
 .liens-utiles-list li::before { content: "›"; position: absolute; left: 0; color: #9cac25; font-weight: 700; }
