@@ -34,6 +34,11 @@ collections:
   articles:
     output: true
     permalink: /:path/
+  # Pages créées par la cliente depuis Pages CMS (rubrique "Nouvelles pages") :
+  # un fichier docs/_pages_libres/ma-page.html donne l'adresse /ma-page/
+  pages_libres:
+    output: true
+    permalink: /:path/
 
 defaults:
   - scope:
@@ -41,6 +46,12 @@ defaults:
       type: articles
     values:
       layout: article
+  - scope:
+      path: ""
+      type: pages_libres
+    values:
+      layout: page
+      ariane: lien
 
 # Jekyll ne doit pas traiter les fichiers de contenu comme du Markdown
 markdown: kramdown

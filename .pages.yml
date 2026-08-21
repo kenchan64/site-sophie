@@ -127,6 +127,27 @@ content:
         order: desc
     fields: *champs_article
 
+  # ---------------------------------------------------------------- Nouvelles pages
+  - name: pages_libres
+    label: Nouvelles pages
+    description: Pour créer une page supplémentaire (ex. "Tarifs", "Ateliers"). Le titre donne l'adresse de la page (ex. "Ateliers" → /ateliers/). La page n'apparaît pas automatiquement dans le menu : faites un lien vers elle depuis un article ou une autre page, ou demandez au webmaster de l'ajouter au menu.
+    type: collection
+    path: docs/_pages_libres
+    format: yaml-frontmatter
+    filename: "{primary}.html"
+    view:
+      fields: [title]
+      primary: title
+    fields:
+      - name: title
+        label: Titre de la page
+        type: string
+        required: true
+      - name: description
+        component: description
+      - name: body
+        component: corps_html
+
   # ---------------------------------------------------------------- Pages
   - name: pages
     label: Pages

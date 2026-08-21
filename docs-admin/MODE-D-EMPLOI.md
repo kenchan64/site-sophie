@@ -95,6 +95,18 @@ conseil au webmaster.
 
 ---
 
+## 5 bis. Créer une nouvelle page
+
+Menu **Nouvelles pages** > **+ Add an entry** : saisir le titre (il donne l'adresse de la page, par
+exemple « Ateliers » → `/ateliers/`), une description pour Google (facultatif) et le texte, puis
+**Save**. La page est en ligne 1 à 2 minutes plus tard.
+
+Elle n'apparaît pas automatiquement dans le menu du haut : pour la rendre accessible, faire un lien
+vers elle depuis un article ou une page existante (bouton « lien » de l'éditeur), ou demander au
+webmaster de l'ajouter au menu.
+
+---
+
 ## 6. Paramètres (téléphone, e-mail, horaires...)
 
 Menu **Paramètres** : nom, métier et ville, phrase d'accroche, téléphone, adresse e-mail, lien de
@@ -137,4 +149,5 @@ modifications, le webmaster peut toujours revenir en arrière.
 | Supprimer un article              | Article > ... > Delete                 | 1 à 2 minutes        |
 | Changer le texte d'une page       | Pages > la page > Save                 | 1 à 2 minutes        |
 | Changer téléphone, horaires, mail | Paramètres > Save                      | 1 à 2 minutes        |
+| Créer une nouvelle page           | Nouvelles pages > + Add an entry       | 1 à 2 minutes        |
 | Ajouter des photos                | Médias > Upload                        | immédiat dans le CMS |
