@@ -1,0 +1,21 @@
+# Informations réutilisées sur toutes les pages du site (en-tête, pied de page, widget
+# « Rendez-vous », boutons d'appel). Modifiable depuis Pages CMS : rubrique « Paramètres ».
+nom: Sophie Fressingeas
+metier: Naturopathe à Saint-Jean-Pied-de-Port
+slogan: Prendre soin de soi, c'est se donner les clés d'une meilleure santé
+telephone: 06 65 98 98 28
+email: sophie.fressingeas33@gmail.com
+tidycal: https://tidycal.com/sophiefressingeas33
+horaires:
+  - "Lundi, mardi et vendredi : 9h - 19h"
+  - "Mercredi et jeudi : 9h - 16h"
+  - "Samedi : 14h - 19h"
+zone:
+  - Saint-Jean-Pied-de-Port
+  - Ossès
+  - Et le secteur ...
+phrase_forte: Seule naturopathe sur Saint-Jean-Pied-de-Port à pratiquer la méthode JMV
+# Identifiant du formulaire Formspree (8 caractères, ex. mqkvbjab). Tant qu'il vaut VOTRE_ID,
+# les formulaires du site n'envoient rien. Le compte Formspree doit être créé avec
+# l'adresse sophie.fressingeas33@gmail.com (voir docs-admin/MODE-D-EMPLOI.md).
+formspree_id: VOTRE_ID

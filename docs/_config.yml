@@ -1,0 +1,63 @@
+# ==========================================================================
+#  Configuration Jekyll du site de Sophie Fressingeas (construit par GitHub Pages)
+# ==========================================================================
+
+title: Sophie Fressingeas
+lang: fr
+
+# Adresse publique du site.
+#   - Aujourd'hui (GitHub Pages du dépôt) : url = https://kenchan64.github.io et baseurl = /site-sophie
+#   - Lors du basculement sur le nom de domaine : mettre
+#         url: "https://www.sophiefressingeas-jmv.com"
+#         baseurl: ""
+#     Aucun autre fichier n'est à modifier : tous les liens passent par le filtre relative_url.
+url: "https://kenchan64.github.io"
+baseurl: "/site-sophie"
+
+# Numéro de version ajouté derrière css/style.css et js/main.js (?v=...).
+# À incrémenter (ex. 20260821c) à chaque modification du CSS ou du JS pour forcer
+# les téléphones et navigateurs à recharger les fichiers au lieu d'utiliser leur cache.
+assets_version: 20260821b
+
+timezone: Europe/Paris
+encoding: utf-8
+
+# Extensions autorisées par GitHub Pages
+plugins:
+  - jekyll-redirect-from   # anciennes adresses (alias) -> redirection vers la page cible
+  - jekyll-sitemap         # génère sitemap.xml automatiquement
+
+# Les articles (actualités, méthode JMV, naturopathie, Knap) sont une collection.
+# L'adresse d'un article est déduite de son chemin dans _articles/ :
+#   _articles/actualites/allergie.html  ->  /actualites/allergie/
+collections:
+  articles:
+    output: true
+    permalink: /:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: articles
+    values:
+      layout: article
+  - scope:
+      path: ""
+    values:
+      layout: page
+
+# Jekyll ne doit pas traiter les fichiers de contenu comme du Markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+
+# Fichiers à ignorer
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Les fichiers suivants sont servis tels quels (pas de traitement Liquid)
+keep_files: []

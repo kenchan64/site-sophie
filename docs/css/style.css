@@ -1728,6 +1728,7 @@ ul.pagination li a:hover { background-color: #f3f6ee; }
     padding-top: 60px;
   }
   /* Nom + métier dans la barre du menu : ne plus rogner "Saint-Jean-Pied-de-Port" */
-  .nav-name { max-width: none; max-height: none; line-height: 16px; padding: 6px 10px 6px 15px; }
+  .nav-name { max-width: none; max-height: none; min-width: 0; line-height: 16px; padding: 6px 10px 6px 15px; }
+  .nav-toggle { flex-shrink: 0; } /* le bouton menu ne doit jamais être poussé hors écran */
   .nav-name span { top: 0; font-size: 11px; line-height: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
