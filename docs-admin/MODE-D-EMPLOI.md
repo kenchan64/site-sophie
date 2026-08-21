@@ -10,8 +10,7 @@ Ce guide explique comment ajouter ou modifier les articles et les textes du site
 
 1. Ouvrir la page **https://app.pagescms.org** dans le navigateur (ordinateur de préférence).
 2. Cliquer sur **« Sign in with GitHub »** et se connecter avec le **compte GitHub propriétaire du
-   site** (identifiant et mot de passe fournis lors de la mise en ligne ; ils sont à conserver
-   précieusement, c'est la clé du site).
+   site** (le compte GitHub de Martial, identifiant « kenchan64 » : c'est la clé du site, à conserver précieusement).
 3. La première fois, GitHub demande d'autoriser Pages CMS à accéder au dépôt : cliquer sur
    **Authorize** / **Install**, puis choisir le dépôt **site-sophie**.
 4. Choisir ensuite le dépôt **site-sophie** dans la liste. Le menu de gauche apparaît :
@@ -121,7 +120,6 @@ existantes : elles sont utilisées par les pages (logo, pictogrammes, photos des
   directement sur GitHub.
 - Les **adresses** (noms de fichiers) des articles et des pages existants : ne pas renommer, ne
   pas déplacer.
-- Le dossier **archive/** sur GitHub (copie de l'ancien site, pour mémoire).
 - Les réglages du dépôt GitHub (**Settings** > **Pages**) : ils font le lien entre le site et le
   nom de domaine.
 
