@@ -1,0 +1,92 @@
+{%- comment -%}
+  Formulaire de contact envoyé via Formspree.
+  Paramètres :  sujet    = objet du message reçu (obligatoire)
+                variante = "secteur" pour la version compacte des pages secteur (sans titre)
+  ---------------------------------------------------------------------------
+  CONFIGURATION REQUISE (à faire une seule fois) :
+    1. Créer un compte gratuit sur https://formspree.io avec l'adresse
+       sophie.fressingeas33@gmail.com (c'est à cette adresse que les messages arriveront).
+    2. Créer un formulaire (« + New form ») et copier son identifiant (8 caractères, ex. mqkvbjab).
+    3. Reporter cet identifiant dans docs/_data/infos.yml, champ « formspree_id »
+       (ou via Pages CMS : Paramètres > Identifiant Formspree).
+    4. Optionnel : dans les réglages Formspree, rediriger après envoi vers la page /merci/ du site.
+  Tant que formspree_id vaut VOTRE_ID, les formulaires ne fonctionnent pas : les visiteurs
+  peuvent utiliser le téléphone ou l'e-mail indiqués sur les pages.
+{%- endcomment -%}
+{%- assign fid = site.data.infos.formspree_id | default: "VOTRE_ID" -%}
+{%- if include.variante == "secteur" %}
+          <div class="contact-form-panel secteur-form-panel">
+            <form class="contact-form" action="https://formspree.io/f/{{ fid }}" method="POST">
+              <input type="hidden" name="_subject" value="{{ include.sujet | escape }}">
+              <div class="form-grid">
+                <div class="form-item">
+                  <label class="visually-hidden" for="edit-nom-prenom">Nom - Prénom :</label>
+                  <input required placeholder="Nom Prénom" type="text" id="edit-nom-prenom" name="nom_prenom" maxlength="128">
+                </div>
+                <div class="form-item">
+                  <label class="visually-hidden" for="edit-societe">Société :</label>
+                  <input placeholder="Société" type="text" id="edit-societe" name="societe" maxlength="128">
+                </div>
+                <div class="form-item">
+                  <label class="visually-hidden" for="edit-tel">Téléphone :</label>
+                  <input placeholder="Téléphone" type="text" id="edit-tel" name="tel" maxlength="128">
+                </div>
+                <div class="form-item">
+                  <label class="visually-hidden" for="edit-email">E-mail :</label>
+                  <input required placeholder="E-mail" type="email" id="edit-email" name="email">
+                </div>
+                <div class="form-item">
+                  <label class="visually-hidden" for="edit-message">Message :</label>
+                  <textarea required placeholder="Message" id="edit-message" name="message" rows="5"></textarea>
+                </div>
+              </div>
+              <div class="form-rgpd">
+                <label for="edit-rgpd">
+                  <input required type="checkbox" id="edit-rgpd" name="rgpd" value="allow_rgpd">
+                  J'autorise ce site à conserver mes données personnelles transmises via ce formulaire. Nous nous engageons à ne jamais les diffuser ni à les transmettre à des tiers. Pour en savoir + sur la gestion de vos données personnelles et exercer vos droits, <a href="{{ '/mentions-legales/' | relative_url }}#donnees">cliquez-ici</a>.
+                </label>
+              </div>
+              <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Envoyer ma demande</button>
+              </div>
+            </form>
+          </div>
+{%- else %}
+        <div class="contact-form-panel">
+          <h2 class="block-title">Envoyez un message</h2>
+          <form class="contact-form" action="https://formspree.io/f/{{ fid }}" method="POST">
+            <input type="hidden" name="_subject" value="{{ include.sujet | escape }}">
+            <div class="form-grid">
+              <div class="form-item half">
+                <label class="visually-hidden" for="edit-nom-prenom">Nom - Prénom :</label>
+                <input required placeholder="Nom Prénom" type="text" id="edit-nom-prenom" name="nom_prenom" maxlength="128">
+              </div>
+              <div class="form-item half">
+                <label class="visually-hidden" for="edit-email">Email :</label>
+                <input required placeholder="Email" type="email" id="edit-email" name="email">
+              </div>
+              <div class="form-item half">
+                <label class="visually-hidden" for="edit-tel">Tél. :</label>
+                <input required placeholder="Téléphone" type="text" id="edit-tel" name="tel" maxlength="128">
+              </div>
+              <div class="form-item half">
+                <label class="visually-hidden" for="edit-societe">Société :</label>
+                <input placeholder="Société" type="text" id="edit-societe" name="societe" maxlength="128">
+              </div>
+              <div class="form-item full">
+                <label class="visually-hidden" for="edit-message">Message :</label>
+                <textarea required placeholder="Message" id="edit-message" name="message" rows="5"></textarea>
+              </div>
+            </div>
+            <div class="form-rgpd">
+              <label for="edit-rgpd">
+                <input required type="checkbox" id="edit-rgpd" name="rgpd" value="allow_rgpd">
+                J'autorise ce site à conserver mes données personnelles transmises via ce formulaire. Nous nous engageons à ne jamais les diffuser ni à les transmettre à des tiers. Pour en savoir + sur la gestion de vos données personnelles et exercer vos droits, <a href="{{ '/mentions-legales/' | relative_url }}#donnees">cliquez-ici</a>.
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Envoyer</button>
+            </div>
+          </form>
+        </div>
+{%- endif %}

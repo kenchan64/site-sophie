@@ -1,0 +1,45 @@
+{%- comment -%}
+  Barre de navigation (menu principal, 7 entrées). L'entrée active est déduite de l'adresse
+  de la page (page.url) ; une page peut forcer l'entrée active avec « menu_actif: knap » par exemple.
+{%- endcomment -%}
+{%- assign u = page.url -%}
+{%- assign actif = "" -%}
+{%- if u == "/" -%}{%- assign actif = "accueil" -%}
+{%- elsif u == "/presentation-de-votre-naturopathe/" -%}{%- assign actif = "presentation" -%}
+{%- elsif u contains "/methode-jmv" -%}{%- assign actif = "jmv" -%}
+{%- elsif u contains "/naturopathe/" or u contains "/naturopathie/" -%}{%- assign actif = "naturopathie" -%}
+{%- elsif u contains "/knap/" -%}{%- assign actif = "knap" -%}
+{%- elsif u == "/blog/" -%}{%- assign actif = "blog" -%}
+{%- elsif u == "/contact.html" or u contains "/rendez-vous-naturopathe" -%}{%- assign actif = "contact" -%}
+{%- endif -%}
+{%- if page.menu_actif and page.menu_actif != "" -%}{%- assign actif = page.menu_actif -%}{%- endif -%}
+  <!-- ===================== Barre de navigation ===================== -->
+  <header id="navbar">
+    <div class="nav-inner">
+      <div class="nav-header">
+        <a class="nav-logo" href="{{ '/' | relative_url }}" title="{{ site.data.infos.nom }}">
+          <img src="{{ '/images/logo-mini.png' | relative_url }}" alt="{{ site.data.infos.nom }}">
+        </a>
+        <a class="nav-name" href="{{ '/' | relative_url }}" title="{{ site.data.infos.nom }}">
+          {{ site.data.infos.nom }}
+          <span>{{ site.data.infos.metier }}</span>
+        </a>
+        <button type="button" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-menu">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav class="nav-collapse" aria-label="Menu principal">
+        <ul id="main-menu" class="main-menu">
+          <li{% if actif == "accueil" %} class="active"{% endif %}><a href="{{ '/' | relative_url }}">Accueil</a></li>
+          <li{% if actif == "presentation" %} class="active"{% endif %}><a href="{{ '/presentation-de-votre-naturopathe/' | relative_url }}">Présentation</a></li>
+          <li{% if actif == "jmv" %} class="active"{% endif %}><a href="{{ '/methode-jmv/sf/6/' | relative_url }}">Méthode JMV</a></li>
+          <li{% if actif == "naturopathie" %} class="active"{% endif %}><a href="{{ '/naturopathe/sf/8/' | relative_url }}">Naturopathie</a></li>
+          <li{% if actif == "knap" %} class="active"{% endif %}><a href="{{ '/knap/sf/9/' | relative_url }}">Knap</a></li>
+          <li{% if actif == "blog" %} class="active"{% endif %}><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+          <li{% if actif == "contact" %} class="active"{% endif %}><a href="{{ '/contact.html' | relative_url }}">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>

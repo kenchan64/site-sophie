@@ -1,0 +1,50 @@
+---
+layout: default
+---
+{%- comment -%}
+  Pages avec formulaire de contact (Contact, Rendez-vous, Rappel gratuit, Demande d'information).
+  Champs : title, ariane (lien | span), sujet_formulaire (objet de l'e-mail reçu).
+  Le corps (texte d'introduction) est facultatif.
+{%- endcomment -%}
+{%- assign tel_lien = site.data.infos.telephone | remove: " " | remove: "." -%}
+    <div id="inner-page-section">
+      <div id="page-main">
+        <section id="content-section">
+          <div class="page-header">
+            <h1>{{ page.title | escape }}</h1>
+          </div>
+          <div id="cw-ariane">
+            <a href="{{ '/' | relative_url }}">{{ site.data.infos.nom }}</a> &gt;
+            {% if page.ariane == "lien" %}<a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>{% else %}<span>{{ page.title | escape }}</span>{% endif %}
+          </div>
+{%- assign corps = content | strip -%}
+{%- if corps != "" %}
+          <div class="container-md rtecenter">
+{% include corps.html html=content %}
+          </div>
+{%- endif %}
+        <div class="container-md rtecenter contact-direct">
+          <p class="mt-20"><strong>Solution immédiate</strong> : contactez directement votre naturopathe&nbsp;:</p>
+          <p class="contact-direct-liens">
+            <a class="btn btn-secondary btn-sm-280" href="tel:{{ tel_lien }}">{{ site.data.infos.telephone }}</a>
+            <a class="btn btn-primary btn-sm-280" href="mailto:{{ site.data.infos.email }}">Envoyer un e-mail</a>
+          </p>
+        </div>
+{% include formulaire-formspree.html sujet=page.sujet_formulaire %}
+        </section>
+      </div>
+    </div>
+{%- if page.url == "/contact.html" %}
+  <script>
+  /* Préremplit le formulaire avec les champs éventuellement transmis
+     par le petit formulaire du pied de page (méthode GET). */
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    ["nom_prenom", "email", "tel", "societe", "message"].forEach(function (name) {
+      var value = params.get(name);
+      var field = document.querySelector(".contact-form-panel [name='" + name + "']");
+      if (value && field) { field.value = value; }
+    });
+  })();
+  </script>
+{%- endif %}

@@ -1732,3 +1732,10 @@ ul.pagination li a:hover { background-color: #f3f6ee; }
   .nav-toggle { flex-shrink: 0; } /* le bouton menu ne doit jamais être poussé hors écran */
   .nav-name span { top: 0; font-size: 11px; line-height: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
+
+/* Bouton menu mobile : toujours au-dessus de tout, traits visibles sur tout fond */
+@media (max-width: 991px) {
+  #navbar { z-index: 1000; }
+  .nav-toggle { position: relative; z-index: 1001; background: transparent; }
+  .nav-toggle .icon-bar { box-shadow: 0 0 2px rgba(0, 0, 0, 0.45); }
+}

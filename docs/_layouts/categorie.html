@@ -1,0 +1,39 @@
+---
+layout: default
+---
+{%- comment -%}
+  Pages de présentation des prestations (Présentation, Méthode JMV, Naturopathie, Knap) :
+  vignette à droite, texte d'introduction (corps éditable), galerie d'articles choisis
+  (champ « galerie » : liste d'adresses d'articles) et bloc « vous propose aussi ».
+  Champs : title, image, image_alt, ariane_nom (texte du fil d'Ariane, par défaut le titre), galerie.
+{%- endcomment -%}
+{%- assign graine = page.title | size | plus: page.url.size -%}
+    <div id="inner-page-section">
+      <div id="page-main">
+        <section id="content-section">
+          <div class="page-header">
+            <h1>{{ page.title | escape }}</h1>
+          </div>
+          <article id="soref-categories" class="node node-page">
+              <div id="cw-ariane">
+                  <a href="{{ '/' | relative_url }}">{{ site.data.infos.nom }}</a> >
+                  <span>{{ page.ariane_nom | default: page.title | escape }}</span>
+              </div>
+              <section class="soref-categories-intro">
+{%- if page.image and page.image != "" %}
+                  <div class="children sm-pull-right col-sm-4">
+                      <div class="term-figure have-img"><img class="img-responsive" src="{{ page.image | relative_url }}" width="460" height="272" alt="{{ page.image_alt | default: '' | escape }}" /></div>
+                  </div>
+{%- endif %}
+                  <div class="soref-intro">
+                      <div class="container-md">
+{% include corps.html html=content %}
+                      </div>
+                  </div>
+              </section>
+{% include galerie.html urls=page.galerie %}
+{% include propose-aussi.html graine=graine %}
+          </article>
+        </section>
+      </div>
+    </div>

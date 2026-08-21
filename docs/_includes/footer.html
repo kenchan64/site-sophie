@@ -1,0 +1,131 @@
+{%- comment -%}
+  Pied de page complet : coordonnées + mini-formulaire, widget flottant « Rendez-vous »,
+  zone d'intervention, bas de page (« En savoir + », mentions, médiation, crédit) et script.
+{%- endcomment -%}
+{%- assign tel_lien = site.data.infos.telephone | remove: " " | remove: "." -%}
+  <!-- ===================== Pied de page : coordonnées + formulaire ===================== -->
+  <div id="footer">
+    <div class="container-1170 footer-flex">
+      <section class="cartouche-footer">
+        <p class="ft-denomination">{{ site.data.infos.nom }}</p>
+        <p class="ft-slogan"><strong>{{ site.data.infos.metier | replace: "Naturopathe à ", "Naturopathe à&nbsp;" }}</strong></p>
+        <p class="ft-tel"><a href="tel:{{ tel_lien }}">{{ site.data.infos.telephone }}</a></p>
+        <p class="ft-horaire">{% for h in site.data.infos.horaires %}{{ h | replace: "h - ", "h&nbsp;- " }}{% unless forloop.last %}<br>
+          {% endunless %}{% endfor %}</p>
+      </section>
+
+      <section class="bloc-contact-form">
+        <h2 class="block-title">Envoyez un message</h2>
+        <form class="contact-form" action="{{ '/contact.html' | relative_url }}" method="get">
+          <div class="form-grid">
+            <div class="form-item half">
+              <label class="visually-hidden" for="edit-nom-prenom">Nom - Prénom :</label>
+              <input required placeholder="Nom Prénom" type="text" id="edit-nom-prenom" name="nom_prenom" maxlength="128">
+            </div>
+            <div class="form-item half">
+              <label class="visually-hidden" for="edit-email">Email :</label>
+              <input required placeholder="Email" type="email" id="edit-email" name="email">
+            </div>
+            <div class="form-item half">
+              <label class="visually-hidden" for="edit-tel">Tél. :</label>
+              <input required placeholder="Téléphone" type="text" id="edit-tel" name="tel" maxlength="128">
+            </div>
+            <div class="form-item half">
+              <label class="visually-hidden" for="edit-societe">Société :</label>
+              <input placeholder="Société" type="text" id="edit-societe" name="societe" maxlength="128">
+            </div>
+            <div class="form-item full">
+              <label class="visually-hidden" for="edit-message">Message :</label>
+              <textarea required placeholder="Message" id="edit-message" name="message" rows="5"></textarea>
+            </div>
+          </div>
+          <div class="form-rgpd">
+            <label for="edit-rgpd">
+              <input required type="checkbox" id="edit-rgpd" name="rgpd" value="allow_rgpd">
+              J'autorise ce site à conserver mes données personnelles transmises via ce formulaire. Nous nous engageons à ne jamais les diffuser ni à les transmettre à des tiers. Pour en savoir + sur la gestion de vos données personnelles et exercer vos droits, <a href="{{ '/mentions-legales/' | relative_url }}#donnees">cliquez-ici</a>.
+            </label>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Envoyer</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <!-- ===================== Widget flottant Rendez-vous ===================== -->
+  <aside class="flottant" aria-label="Rendez-vous">
+    <h2 class="flottant-title" role="button" tabindex="0">Rendez-vous<span class="chevron" aria-hidden="true">&#10095;</span></h2>
+    <div class="flottant-content">
+      <p class="fl-denomination">{{ site.data.infos.nom }}</p>
+      <p class="fl-metier">{{ site.data.infos.metier | replace: "Naturopathe à ", "Naturopathe à&nbsp;" }}</p>
+      <p class="fl-tel">Tél. <span class="loud-text"><a href="tel:{{ tel_lien }}">{{ site.data.infos.telephone }}</a></span></p>
+      <p class="mt-15"><a class="btn btn-primary" href="{{ site.data.infos.tidycal }}" target="_blank" rel="noopener">Prendre rendez-vous</a></p>
+    </div>
+  </aside>
+
+  <!-- ===================== Zone d'intervention ===================== -->
+  <section id="footer-map" class="block-map-footer">
+    <h2 class="block-title">Zone d&#039;intervention</h2>
+    <div class="container-sm">
+      <p class="cw-txt-up-2 rtecenter">{% for z in site.data.infos.zone %}{{ z }}{% unless forloop.last %}<span class="sep">|</span><br class="mobile-only">
+        {% endunless %}{% endfor %}</p>
+    </div>
+  </section>
+
+  <!-- ===================== Bas de page ===================== -->
+  <footer id="bottom">
+    <div class="container-1170">
+
+      <section class="soref-footer">
+        <a href="#soref-footer-content-collapse" class="toggle-soref">En savoir +</a>
+        <div id="soref-footer-content-collapse">
+          <div class="soref-footer-content">
+            <div class="soref-col">
+              <div class="soref-footer-title"><strong>{{ site.data.infos.nom }}</strong></div>
+              <a href="#" class="toggle-soref soref-close">&#9650; Fermer</a>
+            </div>
+            <div class="soref-col">
+              <div class="soref-footer-title"><strong>Notre savoir-faire : {{ site.data.infos.metier }}</strong></div>
+              <ul>
+                <li><a href="{{ '/actualites/syndrome-premenstruel-spm/' | relative_url }}">Syndrome prémenstruel ou SPM</a></li>
+                <li><a href="{{ '/naturopathie/les-grands-principes-de-la-naturopathie-causalisme-vitalisme-humorisme-hygienisme/' | relative_url }}">Les Grands Principes de la Naturopathie : Causalisme, Vitalisme, Humorisme, Hygiénisme ...</a></li>
+                <li><a href="{{ '/methode-jmvr/la-gestion-allergies-a-travers-la-methode-jmv/' | relative_url }}">La Gestion des Allergies à Travers la Méthode JMV</a></li>
+                <li><a href="{{ '/sophie-fressingeas/soulager-vos-allergies/' | relative_url }}">Soulager vos allergies</a></li>
+                <li><a href="{{ '/actualites/l-aloe-vera/' | relative_url }}">L'Aloé Vera</a></li>
+                <li><a href="{{ '/actualites/douleurs-articulaires-mal-au-dos/' | relative_url }}">Douleurs articulaires - mal au dos</a></li>
+              </ul>
+            </div>
+            <div class="soref-col">
+              <div class="soref-footer-title"><strong>Notre zone géographique :</strong></div>
+              <ul>
+                <li><a href="{{ '/naturopathie-methode-jmv/osses/54/' | relative_url }}">Ossès</a></li>
+                <li><a href="{{ '/naturopathie-methode-jmv/saint-jean-pied-de-port/53/' | relative_url }}">Saint-Jean-Pied-de-Port</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="footer-info">
+        <div class="fi-col fi-legal">
+          <p><strong>{{ site.data.infos.nom }}, {{ site.data.infos.metier | replace: "Naturopathe à ", "naturopathe à&nbsp;" }}</strong><br>
+            <a href="{{ '/mentions-legales/' | relative_url }}">Mentions légales</a> - <a href="{{ '/sitemap/' | relative_url }}">Plan du site</a> - <a href="{{ '/liens-utiles/' | relative_url }}">Liens utiles</a>&nbsp;- <a href="{{ '/naturopathe-secteur/' | relative_url }}">Secteur</a> - <a href="{{ '/mentions-legales/' | relative_url }}#cookies">Cookies</a><br>
+            <a href="{{ '/files/politique-de-confidentialite.pdf' | relative_url }}" target="_blank">Politique de confidentialité</a> - <a href="{{ '/files/conditions-generales-de-vente.pdf' | relative_url }}" target="_blank">CGV</a></p>
+        </div>
+        <div class="fi-col fi-mediation">
+          <p><strong>Organisme de médiation</strong><br>
+            CNPM - 27, avenue de la Libération<br>
+            42400 SAINT-CHAMOND<br>
+            09 83 24 74 88</p>
+        </div>
+        <div class="fi-col fi-crea">
+          <p><a href="https://share.google/QbOrPSsuXk7YfwiYZ" target="_blank" rel="noopener" title="Martial Leads - avis et contact"><img src="{{ '/images/logo-martial-leads.png' | relative_url }}" alt="Martial Leads" width="44" height="44">Création du site Internet<br>
+            <strong>Martial Leads</strong></a></p>
+        </div>
+      </section>
+
+    </div>
+  </footer>
+
+  <script src="{{ '/js/main.js' | relative_url }}?v={{ site.assets_version }}"></script>

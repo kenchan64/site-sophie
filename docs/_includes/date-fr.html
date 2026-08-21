@@ -1,0 +1,22 @@
+{%- comment -%}
+  Affiche une date en français.  Usage : {% include date-fr.html date=page.date format="long" %}
+    format="long"  -> Samedi, 1 avril, 2023   (page article)
+    format="court" -> 16 nov 2023             (liste des actualités, carrousel de l'accueil)
+    format="blog"  -> 5 avr. 2023             (page Blog)
+{%- endcomment -%}
+{%- assign mois_long = "janvier,février,mars,avril,mai,juin,juillet,août,septembre,octobre,novembre,décembre" | split: "," -%}
+{%- assign mois_court = "jan,fév,mar,avr,mai,juin,juil,aoû,sep,oct,nov,déc" | split: "," -%}
+{%- assign mois_blog = "janv.,févr.,mars,avr.,mai,juin,juil.,août,sept.,oct.,nov.,déc." | split: "," -%}
+{%- assign jours = "lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche" | split: "," -%}
+{%- assign d = include.date -%}
+{%- assign m = d | date: "%-m" | plus: 0 | minus: 1 -%}
+{%- assign j = d | date: "%u" | plus: 0 | minus: 1 -%}
+{%- assign jour = d | date: "%-d" -%}
+{%- assign annee = d | date: "%Y" -%}
+{%- if include.format == "long" -%}
+{{ jours[j] | capitalize }}, {{ jour }} {{ mois_long[m] }}, {{ annee }}
+{%- elsif include.format == "blog" -%}
+{{ jour }} {{ mois_blog[m] }} {{ annee }}
+{%- else -%}
+{{ jour }} {{ mois_court[m] }} {{ annee }}
+{%- endif -%}

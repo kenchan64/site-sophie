@@ -1,0 +1,16 @@
+{%- comment -%} En-tête HTML commun : balises meta, titre, favicon, polices, feuille de style. {%- endcomment -%}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="only light">
+  <meta name="theme-color" content="#d5a41b">
+  <title>{% if page.titre_seo and page.titre_seo != "" %}{{ page.titre_seo | escape }}{% else %}{{ page.title | escape }} | {{ site.data.infos.nom }}{% endif %}</title>
+  {%- if page.description and page.description != "" %}
+  <meta name="description" content="{{ page.description | strip_newlines | escape }}">
+  {%- endif %}
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="icon" href="{{ '/images/logo-mini.png' | relative_url }}" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}?v={{ site.assets_version }}">
+</head>

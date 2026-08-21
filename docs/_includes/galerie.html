@@ -1,0 +1,17 @@
+{%- comment -%}
+  Galerie d'articles choisis.  Usage : {% include galerie.html urls=page.galerie %}
+  « urls » est une liste d'adresses d'articles (ex. /actualites/allergie/) ; les adresses
+  qui ne correspondent à aucun article existant sont ignorées.
+{%- endcomment -%}
+{%- if include.urls and include.urls != "" and include.urls.size > 0 %}
+              <div class="listing-galerie soref-annonces xs-mt-40">
+                  <div class="view-content">
+{%- for u in include.urls -%}
+{%- assign art = site.articles | where: "url", u | first -%}
+{%- if art %}
+{% include galerie-item.html article=art %}
+{%- endif -%}
+{%- endfor %}
+                  </div>
+              </div>
+{%- endif %}

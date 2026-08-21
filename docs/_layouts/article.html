@@ -1,0 +1,91 @@
+---
+layout: default
+---
+{%- comment -%}
+  Page d'un article de la collection _articles.
+  Champs utilisés : title, date, rubrique, image, image_alt, afficher_date, modele.
+  Trois présentations (reprises de l'ancien site) :
+    - rubrique « Actualités »        : bloc actualité (image, date, texte)
+    - autres rubriques               : bloc « annonce » (image à droite, texte, bloc « vous propose aussi »)
+    - modele: requete (pages /blog/) : texte d'introduction + galerie d'articles
+{%- endcomment -%}
+{%- assign rub = page.rubrique | default: "Actualités" -%}
+{%- if page.url contains "/sophie-fressingeas/" -%}
+  {%- assign parent_url = "/presentation-de-votre-naturopathe/" -%}{%- assign parent_nom = "Sophie FRESSINGEAS" -%}
+{%- elsif rub == "Méthode JMV" -%}
+  {%- assign parent_url = "/methode-jmv/sf/6/" -%}{%- assign parent_nom = "Méthode JMV®" -%}
+{%- elsif rub == "Naturopathie" -%}
+  {%- assign parent_url = "/naturopathe/sf/8/" -%}{%- assign parent_nom = "Naturopathie" -%}
+{%- elsif rub == "Knap" -%}
+  {%- assign parent_url = "/knap/sf/9/" -%}{%- assign parent_nom = "Knap" -%}
+{%- else -%}
+  {%- assign parent_url = "/actualites/" -%}{%- assign parent_nom = "Actualités" -%}
+{%- endif -%}
+{%- assign graine = page.title | size | plus: page.url.size -%}
+    <div id="inner-page-section">
+      <div id="page-main">
+        <section id="content-section">
+          <div class="page-header">
+            <h1>{{ page.title | escape }}</h1>
+          </div>
+{%- if page.modele == "requete" %}
+          <article id="soref_requete" class="node node-page">
+              <div id="cw-ariane">
+                  <a href="{{ '/' | relative_url }}">{{ site.data.infos.nom }}</a> >
+                  <a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>
+              </div>
+              <div id="intro-requete">{% include corps.html html=content %}</div>
+{% include galerie-aleatoire.html n=6 graine=graine classe="xs-mt-40" %}
+{% include propose-aussi.html graine=graine %}
+          </article>
+{%- elsif rub == "Actualités" %}
+          <article class="node node-actualite clearfix">
+              <div id="cw-ariane">
+                  <a href="{{ '/' | relative_url }}">{{ site.data.infos.nom }}</a> >
+                  <a href="{{ parent_url | relative_url }}">{{ parent_nom }}</a> >
+                  <a href="{{ page.url | relative_url }}">{{ page.title | escape }} </a>
+              </div>
+              <div class="container-1170">
+{%- if page.image and page.image != "" %}
+                  <div class="field field-name-field-actu-image field-type-image field-label-hidden"><div class="field-items"><div class="field-item even"><a href="{{ page.image | relative_url }}"><img class="img-responsive" src="{{ page.image | relative_url }}" width="480" height="320" alt="{{ page.image_alt | default: '' | escape }}" title="" /></a></div></div></div>
+{%- endif %}
+{%- if page.afficher_date != false %}
+                  <div class="date-actu">
+                     <div class="field field-name-field-date field-type-datetime field-label-hidden"><div class="field-items"><div class="field-item even"><span  class="date-display-single">{% include date-fr.html date=page.date format="long" %}</span></div></div></div>
+                  </div>
+{%- endif %}
+                  <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even">
+{% include corps.html html=content %}
+                  </div></div></div>
+              </div>
+              <div class="galerie-actu">
+              </div>
+              <footer>
+              </footer>
+          </article>
+{%- else %}
+          <article id="annoncesoref" class="node node-annoncesoref node-promoted clearfix">
+              <div id="cw-ariane">
+                  <a href="{{ '/' | relative_url }}">{{ site.data.infos.nom }}</a> >
+                  <a href="{{ parent_url | relative_url }}">{{ parent_nom }}</a> >
+                  <a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>
+              </div>
+              <div class="body field field-name-body">
+{%- if page.image and page.image != "" %}
+                  <div id="diapo-soref" class="sm-pull-right">
+                      <a href="{{ page.image | relative_url }}"><img class="img-responsive" src="{{ page.image | relative_url }}" width="580" height="385" alt="{{ page.image_alt | default: '' | escape }}" title="" /></a>
+                  </div>
+{%- endif %}
+{%- if page.afficher_date != false %}
+                  <div class="date-actu">
+                     <div class="field field-name-field-date field-type-datetime field-label-hidden"><div class="field-items"><div class="field-item even"><span  class="date-display-single">{% include date-fr.html date=page.date format="long" %}</span></div></div></div>
+                  </div>
+{%- endif %}
+{% include corps.html html=content %}
+              </div>
+{% include propose-aussi.html graine=graine %}
+          </article>
+{%- endif %}
+        </section>
+      </div>
+    </div>

@@ -1,0 +1,32 @@
+{%- comment -%}
+  Bloc « Sophie Fressingeas vous informe et vous propose aussi » : 3 liens vers les pages
+  « requêtes » (/blog/.../n/). L'ancien site les tirait au hasard ; ici le choix est
+  déterministe et varie selon « graine ». Usage : {% include propose-aussi.html graine=12 %}
+{%- endcomment -%}
+{%- assign requetes = site.articles | where: "modele", "requete" | sort: "url" -%}
+{%- assign total = requetes.size -%}
+{%- if total > 0 %}
+{%- assign graine = include.graine | default: 0 | plus: 0 -%}
+{%- assign depart = graine | times: 5 | modulo: total -%}
+{%- assign fin = depart | plus: 3 -%}
+              <section id="soref-bottom" class="soref-bottom xs-mt-40">
+              <div style="max-width:660px; margin: 0 auto;">
+                  <div class="row">
+                      <div class="col-sm-12 text-center soref-isalso">
+                          <div class="soref-isalso-title">{{ site.data.infos.nom }} vous informe et vous propose aussi&nbsp;: </div>
+                          <div class="soref-isalso-link">
+{%- for r in requetes offset: depart limit: 3 %}
+                              <a href="{{ r.url | relative_url }}">{{ r.title | escape }}</a>
+{%- endfor -%}
+{%- if fin > total -%}
+{%- assign reste = fin | minus: total -%}
+{%- for r in requetes limit: reste %}
+                              <a href="{{ r.url | relative_url }}">{{ r.title | escape }}</a>
+{%- endfor -%}
+{%- endif %}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+{%- endif %}

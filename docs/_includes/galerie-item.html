@@ -1,0 +1,16 @@
+{%- comment -%} Une vignette d'article dans une « listing-galerie ». Paramètre : article {%- endcomment -%}
+{%- assign a = include.article -%}
+{%- if a.resume and a.resume != "" -%}{%- assign teaser = a.resume -%}{%- else -%}{%- assign teaser = a.content | strip_html | strip_newlines | strip -%}{%- endif -%}
+                          <div class="views-row views-row-">
+                              <figure>
+                                  {% if a.image and a.image != "" %}<img class="img-responsive" src="{{ a.image | relative_url }}" width="460" height="272" alt="{{ a.image_alt | default: '' | escape }}" />{% else %}<img class="img-responsive img-rounded img-center" src="{{ '/images/bien-etre-galets.jpg' | relative_url }}" width="460" height="272" alt="" />{% endif %}
+                                  <figcaption>
+                                      <div>
+                                          <h2 class="g-title"><a href="{{ a.url | relative_url }}">{{ a.title | escape }}</a></h2>
+                                          <p class="g-body">{{ teaser | truncate: 160 }}</p>
+                                          <p class="g-savoir-plus">En savoir +</p>
+                                      </div>
+                                      <a href="{{ a.url | relative_url }}">En savoir +</a>
+                                  </figcaption>
+                              </figure>
+                          </div>

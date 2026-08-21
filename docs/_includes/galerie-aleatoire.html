@@ -1,0 +1,25 @@
+{%- comment -%}
+  Galerie de « n » articles (l'ancien site en tirait au hasard). Le choix est déterministe :
+  on parcourt la liste des articles à partir d'un décalage calculé depuis « graine »
+  (un nombre différent par page), de sorte que chaque page affiche des articles différents.
+  Usage : {% include galerie-aleatoire.html n=3 graine=27 %}
+{%- endcomment -%}
+{%- assign tous = site.articles | where_exp: "a", "a.modele != 'requete'" | sort: "url" -%}
+{%- assign total = tous.size -%}
+{%- assign n = include.n | default: 3 -%}
+{%- assign graine = include.graine | default: 0 | plus: 0 -%}
+{%- assign depart = graine | times: 7 | modulo: total -%}
+{%- assign fin = depart | plus: n -%}
+                          <div class="listing-galerie soref-annonces{% if include.classe %} {{ include.classe }}{% endif %}">
+                              <div class="view-content">
+{%- for art in tous offset: depart limit: n %}
+{% include galerie-item.html article=art %}
+{%- endfor -%}
+{%- if fin > total -%}
+{%- assign reste = fin | minus: total -%}
+{%- for art in tous limit: reste %}
+{% include galerie-item.html article=art %}
+{%- endfor -%}
+{%- endif %}
+                              </div>
+                          </div>

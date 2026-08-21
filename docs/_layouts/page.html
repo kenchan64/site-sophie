@@ -1,0 +1,36 @@
+---
+layout: default
+---
+{%- comment -%}
+  Page intérieure générique : titre (h1), fil d'Ariane facultatif, puis le corps de la page.
+  Options de l'en-tête (front matter) :
+    ariane: lien   -> « Sophie Fressingeas > Titre » (titre cliquable)
+    ariane: span   -> « Sophie Fressingeas > Titre » (titre non cliquable)
+    (absent)       -> pas de fil d'Ariane généré (il peut être inclus dans le corps)
+{%- endcomment %}
+    <div id="inner-page-section">
+      <div id="page-main">
+        <section id="content-section">
+          <div class="page-header">
+            <h1>{{ page.title | escape }}</h1>
+          </div>
+{%- if page.ariane == "lien" or page.ariane == "span" %}
+          <div id="cw-ariane">
+            <a href="{{ '/' | relative_url }}">{{ site.data.infos.nom }}</a> &gt;
+            {% if page.ariane == "lien" %}<a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>{% else %}<span>{{ page.title | escape }}</span>{% endif %}
+          </div>
+{%- endif %}
+{%- if page.ariane == "lien" or page.ariane == "span" %}
+          <article class="node node-page clearfix">
+            <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even">
+{% include corps.html html=content %}
+            </div></div></div>
+            <footer>
+            </footer>
+          </article>
+{%- else %}
+{% include corps.html html=content %}
+{%- endif %}
+        </section>
+      </div>
+    </div>

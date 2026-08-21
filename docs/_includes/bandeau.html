@@ -1,0 +1,17 @@
+{%- comment -%}
+  Bandeau d'en-tête (logo + slogan). Identique sur l'accueil et les pages intérieures.
+  (L'ancienne barre « Prendre rendez-vous / téléphone » sous le bandeau a été supprimée :
+  le widget flottant et la barre mobile la remplacent.)
+{%- endcomment -%}
+  <!-- ===================== Bandeau d'en-tête ===================== -->
+  <header id="page-header">
+    <div class="sl-encart">
+      <div class="sl-logo">
+        <a href="{{ '/' | relative_url }}"><img src="{{ '/images/logo.png' | relative_url }}" alt="Logo {{ site.data.infos.nom }}"></a>
+      </div>
+      <div class="sl-infos">
+        <p class="sl-slogan"><strong>{{ site.data.infos.metier | replace: "Naturopathe à ", "Naturopathe à&nbsp;" }}</strong></p>
+        <p class="sl-slogan sl-slogan-small"><em>{{ site.data.infos.slogan }}</em></p>
+      </div>
+    </div>
+  </header>

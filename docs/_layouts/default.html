@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+{% include head.html %}
+<body{% unless page.layout == "home" %} class="page-inner"{% endunless %}>
+
+{% include navbar.html %}
+
+{% include bandeau.html %}
+
+  <main>
+{{ content }}
+{% include blocs-communs.html %}
+
+  </main>
+
+{% include footer.html %}
+</body>
+</html>

@@ -1,0 +1,71 @@
+---
+layout: default
+---
+{%- comment -%}
+  Page d'accueil : carrousel des 3 dernières actualités, texte d'introduction (corps de la page),
+  damier des 3 spécialités (champ « blocs » : titre, texte, image, style_image, bouton_texte, bouton_lien).
+{%- endcomment -%}
+{%- assign actus = site.articles | where: "rubrique", "Actualités" | where_exp: "a", "a.modele != 'requete'" | sort: "date" | reverse -%}
+    <!-- ===================== Actualités (carrousel) ===================== -->
+    <section id="actu-top" aria-label="Actualités">
+      <div class="container-1170">
+        <div class="actu-slider" data-interval="7000">
+          <ul class="slides">
+{%- for a in actus limit: 3 %}
+{%- if a.image and a.image != "" %}{% assign img = a.image %}{% else %}{% assign img = "/images/actu-defaut.jpg" %}{% endif %}
+{%- if a.resume and a.resume != "" %}{% assign teaser = a.resume %}{% else %}{% assign teaser = a.content | strip_html | strip_newlines | strip | truncate: 200 %}{% endif %}
+            <li class="slide{% if forloop.first %} is-active{% endif %}">
+              <div class="actu-image">
+                <a href="{{ a.url | relative_url }}">
+                  <img src="{{ img | relative_url }}" width="400" height="235" alt="{{ a.image_alt | default: '' | escape }}">
+                </a>
+              </div>
+              <div class="actu-texte">
+                <div class="actu-title">
+                  <a href="{{ a.url | relative_url }}">{{ a.title | truncate: 48 | escape }}</a><br>
+                  <span class="actu-date">{% include date-fr.html date=a.date format="court" %}</span>
+                </div>
+                <div class="actu-body">{{ teaser }}</div>
+                <a href="{{ '/actualites/' | relative_url }}" class="all-actus btn btn-primary">Toute l'actualité</a>
+              </div>
+            </li>
+{%- endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Contenu principal ===================== -->
+    <div id="page-main">
+      <h1>{{ page.title | escape }}</h1>
+
+      <div class="container-md rtecenter">
+{% include corps.html html=content %}
+      </div>
+
+      <!-- Damier de présentation des spécialités -->
+      <div class="cw-checkerboard">
+{%- for b in page.blocs %}
+{%- assign ligne = forloop.index -%}
+{%- assign pair = ligne | modulo: 2 %}
+        <div class="cb-row row-{{ ligne }} {% if pair == 1 %}bg-one{% else %}bg-two{% endif %}">
+          <div class="cb-inner{% if pair == 0 %} cb-reverse{% endif %}">
+            <div class="cb-txt {% if pair == 1 %}col-txt-one{% else %}col-txt-two{% endif %}">
+              <div class="content">
+                <h2 class="cw-checkerboard-title">{{ b.titre | escape }}</h2>
+{% include corps.html html=b.texte %}
+                <p class="cw-checkerboard-btn mt-40"><a class="btn btn-primary btn-sm-280" href="{{ b.bouton_lien | relative_url }}">{{ b.bouton_texte | escape }}</a></p>
+              </div>
+            </div>
+{%- if b.style_image == "centre" %}
+            <div class="cb-img col-img-center">
+              <img src="{{ b.image | relative_url }}" alt="{{ b.image_alt | default: '' | escape }}">
+            </div>
+{%- else %}
+            <div class="cb-img col-img-full" style="background-image: url({{ b.image | relative_url }});"></div>
+{%- endif %}
+          </div>
+        </div>
+{%- endfor %}
+      </div>
+    </div>

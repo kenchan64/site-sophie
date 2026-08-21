@@ -1,0 +1,76 @@
+{%- comment -%}
+  Blocs affichés en bas de toutes les pages, dans <main> : appel à l'action + partage,
+  points forts + bandeau, avis Google.
+{%- endcomment -%}
+{%- assign tel_lien = site.data.infos.telephone | remove: " " | remove: "." -%}
+    <!-- ===================== Appel à l'action ===================== -->
+    <section id="page-actions">
+      <div class="block-call-to-action rtecenter">
+        <div class="cta-label">Contact</div>
+        <div class="cta-number"><span class="text-nowrap"><b>Tél. <a href="tel:{{ tel_lien }}">{{ site.data.infos.telephone }}</a></b></span></div>
+        <p class="mt-15"><a class="btn btn-primary btn-sm-280" href="{{ '/contact.html' | relative_url }}">Envoyer un message</a></p>
+      </div>
+      <section class="block-share rtecenter" aria-label="Partage">
+        <h2 class="block-title">Partagez cette page sur</h2>
+        <span class="share-buttons">
+          <a class="share-btn share-facebook" href="https://www.facebook.com/sharer/sharer.php" target="_blank" rel="noopener" aria-label="Partager sur Facebook" data-share="facebook">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#fff" d="M17.9 14h4.1l-.5 4h-3.6v12h-4.9V18H10v-4h3V11c0-3 1.8-5 5-5h3.4v4H19c-.8 0-1.1.5-1.1 1.3V14z"/></svg>
+          </a>
+          <a class="share-btn share-twitter" href="https://twitter.com/intent/tweet" target="_blank" rel="noopener" aria-label="Partager sur X / Twitter" data-share="twitter">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#fff" d="M28 9.1c-.9.4-1.8.7-2.8.8 1-.6 1.8-1.6 2.2-2.7-1 .6-2 1-3.1 1.2A4.9 4.9 0 0 0 15.9 12c0 .4 0 .8.1 1.1-4.1-.2-7.7-2.2-10.1-5.1-.4.7-.7 1.6-.7 2.5 0 1.7.9 3.2 2.2 4.1-.8 0-1.6-.2-2.2-.6v.1c0 2.4 1.7 4.4 3.9 4.8-.4.1-.8.2-1.3.2l-.9-.1c.6 2 2.4 3.4 4.6 3.4a9.9 9.9 0 0 1-6.1 2.1H4a13.9 13.9 0 0 0 7.6 2.2c9 0 14-7.5 14-14v-.6c1-.7 1.8-1.6 2.4-2.6z"/></svg>
+          </a>
+          <a class="share-btn share-email" href="mailto:?subject=Sophie%20Fressingeas" aria-label="Partager par email" data-share="email">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#fff" d="M6 9h20a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1zm10 8.5L7.2 11h17.6L16 17.5zM7 13.3l9 6.2 9-6.2V21H7v-7.7z"/></svg>
+          </a>
+        </span>
+      </section>
+    </section>
+
+    <!-- ===================== Points forts + bandeau parallax ===================== -->
+    <section id="page-parallax">
+      <section class="bloc-services">
+        <h2 class="block-title">Mes points forts</h2>
+        <div class="container-1170">
+          <div class="cw-pictos">
+            <div>
+              <div class="picto"><img src="{{ '/images/picto-formation.png' | relative_url }}" alt="Formation et technique récente"></div>
+              <div><p class="picto-legende">Formation et<br>technique récente</p></div>
+            </div>
+            <div>
+              <div class="picto"><img src="{{ '/images/picto-prix.png' | relative_url }}" alt="Prix intéressant"></div>
+              <div><p class="picto-legende">Prix intéressant</p></div>
+            </div>
+            <div>
+              <div class="picto"><img src="{{ '/images/picto-domicile.png' | relative_url }}" alt="Consultation à domicile"></div>
+              <div><p class="picto-legende">Consultation<br>à domicile</p></div>
+            </div>
+            <div>
+              <div class="picto"><img src="{{ '/images/picto-bilans.png' | relative_url }}" alt="Bilans personnalisés"></div>
+              <div><p class="picto-legende">Bilans<br>personnalisés</p></div>
+            </div>
+            <div>
+              <div class="picto"><img src="{{ '/images/picto-soins.png' | relative_url }}" alt="Soins sur mesure"></div>
+              <div><p class="picto-legende">Soins sur<br>mesure</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="parallax parallax-front">
+        <div class="container-md">
+          <p class="text-loud">{{ site.data.infos.phrase_forte }}</p>
+        </div>
+      </section>
+    </section>
+
+    <!-- ===================== Avis Google ===================== -->
+    <section id="avis-client">
+      <h2 class="block-title">Avis Google</h2>
+      <div class="container-1170">
+        <div class="avis-grid">
+          <div class="avis-item"><img src="{{ '/images/avis-google-1.jpg' | relative_url }}" alt="Avis Google"></div>
+          <div class="avis-item"><img src="{{ '/images/avis-google-2.jpg' | relative_url }}" alt="Avis Google"></div>
+          <div class="avis-item"><img src="{{ '/images/avis-google-3.jpg' | relative_url }}" alt="Avis Google"></div>
+        </div>
+        <p class="rtecenter mt-50"><a class="btn btn-primary btn-sm-280" href="https://www.google.com/search?q=Fressingeas+Sophie+Naturopathe+et+Naturopraticienne+en+technique+%C3%A9nerg%C3%A9tique&amp;sca_esv=6b1587b7afa647cb&amp;rlz=1C1ONGR_frFR1058FR1058&amp;sxsrf=AHTn8zqe1pw53jSrWpQVCFPiXU8UBHl3aA%3A1745489393945&amp;ei=8Q0KaPK-OfPsi-gPgNyZoAU&amp;ved=0ahUKEwiy-6PatvCMAxVz9gIHHQBuBlQQ4dUDCBI&amp;uact=5&amp;oq=Fressingeas+Sophie+Naturopathe+et+Naturopraticienne+en+technique+%C3%A9nerg%C3%A9tique&amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiTkZyZXNzaW5nZWFzIFNvcGhpZSBOYXR1cm9wYXRoZSBldCBOYXR1cm9wcmF0aWNpZW5uZSBlbiB0ZWNobmlxdWUgw6luZXJnw6l0aXF1ZUiRgQJQy_0BWMv9AXAFeACQAQCYAWqgAWqqAQMwLjG4AQPIAQD4AQL4AQGYAgWgAg7CAgsQABiABBiwAxiiBMICCBAAGLADGO8FwgILEAAYsAMYogQYiQWYAwCIBgGQBgWSBwE1oAfpArIHALgHAA&amp;sclient=gws-wiz-serp" target="_blank" rel="noopener">Voir plus d'avis</a></p>
+      </div>
+    </section>

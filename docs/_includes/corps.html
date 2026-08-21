@@ -1,0 +1,10 @@
+{%- comment -%}
+  Affiche le corps HTML d'une page ou d'un article (paramètre « html ») en préfixant les
+  liens et images écrits « à la racine » (href="/..." et src="/...") par le baseurl du site.
+  Les contenus édités dans Pages CMS restent ainsi de simples adresses /images/..., /actualites/...
+  qui fonctionnent à la fois sous https://kenchan64.github.io/site-sophie/ et sur le domaine final.
+{%- endcomment -%}
+{%- capture href_base %}href="{{ site.baseurl }}/{% endcapture -%}
+{%- capture src_base %}src="{{ site.baseurl }}/{% endcapture -%}
+{%- capture url_base %}url({{ site.baseurl }}/{% endcapture -%}
+{{ include.html | replace: 'href="/', href_base | replace: 'src="/', src_base | replace: 'url(/', url_base }}
